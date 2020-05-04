@@ -8,7 +8,7 @@ Convert Azure [Video Indexer](https://www.videoindexer.ai/) insight data into [A
 2. Run video files through Microsoft Video Indexer to extract .JSON insights files
 3. Put .JSON insights files into folder and put the folder name into the **$vi_source_files** variable in the ConfigureSearchService.ps1 script. 
 4. Create an Azure Search service and put the admin key and search service name into the **$adminKey** and **$searchName** variables in the  ConfigureSearchService.ps1
-5. List the names of the insight files (without .json extension) in the **$sourceFiles** variable in ConfigureSearchService.ps1 
+5. List the names of the insight files (without .json extension) in the **$sourceFiles** variable in the ConfigureSearchService.ps1 PowerShell script. 
 6. Run the ConfigureSearchService.ps1 PowerShell script.
 
 Now all of the video index data is in two search indexes in Azure Cognitive Search, **scenes**, and **thumbnails**. 

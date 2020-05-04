@@ -47,76 +47,75 @@ namespace VIToACS
         #region Implementation
         private static async Task CreateThumbnailIndexAxync(string filename)
         {
-            using (var fileStream = new FileStream(filename, FileMode.Open))
-            {
-                var doc = await JsonDocument.ParseAsync(fileStream).ConfigureAwait(false);
+            using var fileStream = new FileStream(filename, FileMode.Open);
 
-                var videos = doc.RootElement.GetProperty(Videos);
+            var doc = await JsonDocument.ParseAsync(fileStream).ConfigureAwait(false);
 
-                var summarizedInsights = doc.RootElement.GetProperty("summarizedInsights");
+            var videos = doc.RootElement.GetProperty(Videos);
 
-                var allFaces = summarizedInsights.GetProperty("faces").EnumerateArray();
+            var summarizedInsights = doc.RootElement.GetProperty("summarizedInsights");
 
-                var thumbnails = from video in videos.EnumerateArray()
-                                 let insights = video.GetProperty("insights")
-                                 from shot in insights.GetProperty("shots").EnumerateArray()
-                                 from keyFrame in shot.GetProperty("keyFrames").EnumerateArray()
-                                 let instance = keyFrame.GetProperty("instances").EnumerateArray().First()
-                                 let faces = from face in allFaces
-                                             from appearance in face.GetProperty("appearances").EnumerateArray()
-                                             let start = TimeSpan.Parse(appearance.GetProperty("startTime").GetString(), CultureInfo.InvariantCulture)
-                                             let end = TimeSpan.Parse(appearance.GetProperty("endTime").GetString(), CultureInfo.InvariantCulture)
-                                             where IsIn(instance, start, end)
-                                             select face.GetProperty("name").GetString()
-                                 let labels = from label in summarizedInsights.GetProperty("labels").EnumerateArray()
-                                              from labelInstance in label.GetProperty("appearances").EnumerateArray()
-                                              let start = TimeSpan.Parse(labelInstance.GetProperty("startTime").GetString(), CultureInfo.InvariantCulture)
-                                              let end = TimeSpan.Parse(labelInstance.GetProperty("endTime").GetString(), CultureInfo.InvariantCulture)
-                                              where IsIn(instance, start, end)
-                                              select label.GetProperty("name").GetString()
-                                 let ocr = CreateCollection(insights, instance, "ocr", delegate (JsonElement item)
+            var allFaces = summarizedInsights.GetProperty("faces").EnumerateArray();
+
+            var thumbnails = from video in videos.EnumerateArray()
+                             let insights = video.GetProperty("insights")
+                             from shot in insights.GetProperty("shots").EnumerateArray()
+                             from keyFrame in shot.GetProperty("keyFrames").EnumerateArray()
+                             let instance = keyFrame.GetProperty("instances").EnumerateArray().First()
+                             let faces = from face in allFaces
+                                         from appearance in face.GetProperty("appearances").EnumerateArray()
+                                         let start = TimeSpan.Parse(appearance.GetProperty("startTime").GetString(), CultureInfo.InvariantCulture)
+                                         let end = TimeSpan.Parse(appearance.GetProperty("endTime").GetString(), CultureInfo.InvariantCulture)
+                                         where IsIn(instance, start, end)
+                                         select face.GetProperty("name").GetString()
+                             let labels = from label in summarizedInsights.GetProperty("labels").EnumerateArray()
+                                          from labelInstance in label.GetProperty("appearances").EnumerateArray()
+                                          let start = TimeSpan.Parse(labelInstance.GetProperty("startTime").GetString(), CultureInfo.InvariantCulture)
+                                          let end = TimeSpan.Parse(labelInstance.GetProperty("endTime").GetString(), CultureInfo.InvariantCulture)
+                                          where IsIn(instance, start, end)
+                                          select label.GetProperty("name").GetString()
+                             let ocr = CreateCollection(insights, instance, "ocr", delegate (JsonElement item)
+                             {
+                                 return new
                                  {
-                                     return new
-                                     {
-                                         text = item.GetProperty("text").GetString(),
-                                         confidence = item.GetProperty("confidence").GetDouble()
-                                     };
-                                 })
-                                 let keywords = CreateCollection(insights, instance, "keywords", delegate (JsonElement item)
-                                 {
-                                     return new
-                                     {
-                                         text = item.GetProperty("text").GetString(),
-                                         confidence = item.GetProperty("confidence").GetDouble()
-                                     };
-                                 })
-                                 let topics = CreateCollection(insights, instance, "topics", delegate (JsonElement item)
-                                 {
-                                     return new
-                                     {
-                                         name = item.GetProperty("name").GetString(),
-                                         confidence = item.GetProperty("confidence").GetDouble()
-                                     };
-                                 })
-                                 select new // this is a document for Azure Cognitive Search
-                                 {
-                                     id = instance.GetProperty("thumbnailId").GetString(),
-                                     //duration = TimeSpan.Parse(insights.GetProperty("duration").GetString(), CultureInfo.InvariantCulture),
-                                     //language = insights.GetProperty("language").GetString(),
-                                     video = CreateVideo(video),
-                                     start = GetTimeSpan(instance, "start"),
-                                     end = GetTimeSpan(instance, "end"),
-                                     faces = faces.Any() ? faces : null,
-                                     labels = labels.Any() ? labels : null,
-                                     ocr,
-                                     keywords,
-                                     topics,
-                                     shotTags = GetTags(shot),
-                                     playlist = CreatePlaylist(doc.RootElement)
+                                     text = item.GetProperty("text").GetString(),
+                                     confidence = item.GetProperty("confidence").GetDouble()
                                  };
+                             })
+                             let keywords = CreateCollection(insights, instance, "keywords", delegate (JsonElement item)
+                             {
+                                 return new
+                                 {
+                                     text = item.GetProperty("text").GetString(),
+                                     confidence = item.GetProperty("confidence").GetDouble()
+                                 };
+                             })
+                             let topics = CreateCollection(insights, instance, "topics", delegate (JsonElement item)
+                             {
+                                 return new
+                                 {
+                                     name = item.GetProperty("name").GetString(),
+                                     confidence = item.GetProperty("confidence").GetDouble()
+                                 };
+                             })
+                             select new // this is a document for Azure Cognitive Search
+                             {
+                                 id = instance.GetProperty("thumbnailId").GetString(),
+                                 //duration = TimeSpan.Parse(insights.GetProperty("duration").GetString(), CultureInfo.InvariantCulture),
+                                 //language = insights.GetProperty("language").GetString(),
+                                 video = CreateVideo(video),
+                                 start = GetTimeSpan(instance, "start"),
+                                 end = GetTimeSpan(instance, "end"),
+                                 faces = faces.Any() ? faces : null,
+                                 labels = labels.Any() ? labels : null,
+                                 ocr,
+                                 keywords,
+                                 topics,
+                                 shotTags = GetTags(shot),
+                                 playlist = CreatePlaylist(doc.RootElement)
+                             };
 
-                WriteFile("thumbnails_", filename, thumbnails);
-            }
+            WriteFile("thumbnails_", filename, thumbnails);
         }
         static object GetTags(JsonElement shot)
         {
@@ -159,137 +158,135 @@ namespace VIToACS
             var newFilename = prefix + Path.GetFileName(filename);
             var path = Path.GetDirectoryName(filename);
             var newPath = Path.Combine(path, newFilename);
-            using (var outputStream = new FileStream(newPath, FileMode.Create, FileAccess.Write))
-            {
-                using (var writer = new StreamWriter(outputStream))
-                {
-                    writer.Write(json);
-                }
-            }
+
+            using var outputStream = new FileStream(newPath, FileMode.Create, FileAccess.Write);
+
+            using var writer = new StreamWriter(outputStream);
+            
+            writer.Write(json);
 
             //Console.WriteLine(json);
         }
 
         private static async Task CreateSceneIndexAsync(string filename)
         {
-            using (var fileStream = new FileStream(filename, FileMode.Open))
-            {
-                var doc = await System.Text.Json.JsonDocument.ParseAsync(fileStream).ConfigureAwait(false);
-                var videos = doc.RootElement.GetProperty("videos");
+            using var fileStream = new FileStream(filename, FileMode.Open);
 
-                var sceneObjects = from video in videos.EnumerateArray()
-                                   let videoId = video.GetProperty("id").GetString()
-                                   let insights = video.GetProperty("insights")
-                                   from scene in insights.GetProperty("scenes").EnumerateArray()
-                                   let sceneId = scene.GetProperty("id").GetUInt32()
-                                   let instance = scene.GetProperty("instances").EnumerateArray().First()
-                                   let start = TimeSpan.Parse(instance.GetProperty("start").GetString(), CultureInfo.InvariantCulture)
-                                   let end = TimeSpan.Parse(instance.GetProperty("end").GetString(), CultureInfo.InvariantCulture)
-                                   let shots = from shot in insights.GetProperty("shots").EnumerateArray()
-                                               let shotInstance = shot.GetProperty("instances").EnumerateArray().First()
-                                               let keyFrames = from keyFrame in shot.GetProperty("keyFrames").EnumerateArray()
-                                                               let keyFrameInstance = keyFrame.GetProperty("instances").EnumerateArray().First()
-                                                               let keyFrameStart = TimeSpan.Parse(keyFrameInstance.GetProperty("start").GetString(), CultureInfo.InvariantCulture)
-                                                               let keyFrameEnd = TimeSpan.Parse(keyFrameInstance.GetProperty("end").GetString(), CultureInfo.InvariantCulture)
-                                                               select new
-                                                               {
-                                                                   id = keyFrame.GetProperty("id").GetUInt32(),
-                                                                   thumbnailId = keyFrameInstance.GetProperty("thumbnailId").GetString(),
-                                                                   start = keyFrameStart.TotalSeconds,
-                                                                   end = keyFrameEnd.TotalSeconds
-                                                               }
-                                               let hasTags = shot.TryGetProperty("tags", out JsonElement tags)
-                                               where IsIn(shotInstance, start, end)
-                                               select new
-                                               {
-                                                   id = shot.GetProperty("id").GetUInt32(),
-                                                   start = GetTimeSpan(shotInstance, "start"),
-                                                   end = GetTimeSpan(shotInstance, "end"),
-                                                   tags = hasTags ? from tag in shot.GetProperty("tags").EnumerateArray()
-                                                                    select tag.GetString() : null,
-                                                   keyFrames
-                                               }
-                                   let transcript = GetCollection(insights, "transcript", start, end, delegate (JsonElement transcriptInstance, JsonElement item)
+            var doc = await System.Text.Json.JsonDocument.ParseAsync(fileStream).ConfigureAwait(false);
+            var videos = doc.RootElement.GetProperty("videos");
+
+            var sceneObjects = from video in videos.EnumerateArray()
+                               let videoId = video.GetProperty("id").GetString()
+                               let insights = video.GetProperty("insights")
+                               from scene in insights.GetProperty("scenes").EnumerateArray()
+                               let sceneId = scene.GetProperty("id").GetUInt32()
+                               let instance = scene.GetProperty("instances").EnumerateArray().First()
+                               let start = TimeSpan.Parse(instance.GetProperty("start").GetString(), CultureInfo.InvariantCulture)
+                               let end = TimeSpan.Parse(instance.GetProperty("end").GetString(), CultureInfo.InvariantCulture)
+                               let shots = from shot in insights.GetProperty("shots").EnumerateArray()
+                                           let shotInstance = shot.GetProperty("instances").EnumerateArray().First()
+                                           let keyFrames = from keyFrame in shot.GetProperty("keyFrames").EnumerateArray()
+                                                           let keyFrameInstance = keyFrame.GetProperty("instances").EnumerateArray().First()
+                                                           let keyFrameStart = TimeSpan.Parse(keyFrameInstance.GetProperty("start").GetString(), CultureInfo.InvariantCulture)
+                                                           let keyFrameEnd = TimeSpan.Parse(keyFrameInstance.GetProperty("end").GetString(), CultureInfo.InvariantCulture)
+                                                           select new
+                                                           {
+                                                               id = keyFrame.GetProperty("id").GetUInt32(),
+                                                               thumbnailId = keyFrameInstance.GetProperty("thumbnailId").GetString(),
+                                                               start = keyFrameStart.TotalSeconds,
+                                                               end = keyFrameEnd.TotalSeconds
+                                                           }
+                                           let hasTags = shot.TryGetProperty("tags", out JsonElement tags)
+                                           where IsIn(shotInstance, start, end)
+                                           select new
+                                           {
+                                               id = shot.GetProperty("id").GetUInt32(),
+                                               start = GetTimeSpan(shotInstance, "start"),
+                                               end = GetTimeSpan(shotInstance, "end"),
+                                               tags = hasTags ? from tag in shot.GetProperty("tags").EnumerateArray()
+                                                                select tag.GetString() : null,
+                                               keyFrames
+                                           }
+                               let transcript = GetCollection(insights, "transcript", start, end, delegate (JsonElement transcriptInstance, JsonElement item)
+                               {
+                                   return new
                                    {
-                                       return new
-                                       {
-                                           id = item.GetProperty("id").GetUInt32(),
-                                           text = item.GetProperty("text").GetString(),
-                                           language = item.GetProperty("language").GetString(),
-                                           start = GetTimeSpan(transcriptInstance, "start"),
-                                           end = GetTimeSpan(transcriptInstance, "end")
-                                       };
-                                   })
-                                   let faces = GetCollection(insights, "faces", start, end, delegate (JsonElement faceInstance, JsonElement face)
-                                   {
-                                       return new
-                                       {
-                                           id = face.GetProperty("id").GetUInt32(),
-                                           name = face.GetProperty("name").GetString(),
-                                           start = GetTimeSpan(faceInstance, "start"),
-                                           end = GetTimeSpan(faceInstance, "end"),
-                                           confidence = face.GetProperty("confidence").GetDouble(),
-                                           knownPersonId = face.TryGetProperty("knownPersonId", out JsonElement value2) ? face.GetProperty("knownPersonId").GetString() : null
-                                       };
-                                   })
-                                   let emotions = GetCollection(insights, "emotions", start, end, delegate (JsonElement element, JsonElement parent)
-                                   {
-                                       return new
-                                       {
-                                           id = parent.GetProperty("id").GetUInt32(),
-                                           type = parent.GetProperty("type").GetString(),
-                                           start = GetTimeSpan(element, "start"),
-                                           end = GetTimeSpan(element, "end")
-                                       };
-                                   })
-                                   let labels = GetCollection(insights, "labels", start, end, delegate (JsonElement element, JsonElement parent)
-                                   {
-                                       return new
-                                       {
-                                           id = parent.GetProperty("id").GetUInt32(),
-                                           name = parent.GetProperty("name").GetString(),
-                                           start = GetTimeSpan(element, "start"),
-                                           end = GetTimeSpan(element, "end"),
-                                           confidence = element.GetProperty("confidence").GetDouble()
-                                       };
-                                   })
-                                   let audioEffects = GetCollection(insights, "audioEffects", start, end, delegate (JsonElement instance, JsonElement effect)
-                                   {
-                                       return new
-                                       {
-                                           type = effect.GetProperty("type").GetString(),
-                                           start = GetTimeSpan(instance, "start"),
-                                           end = GetTimeSpan(instance, "end")
-                                       };
-                                   })
-                                   let sentiments = GetCollection(insights, "sentiments", start, end, delegate(JsonElement instance, JsonElement sentiment)
-                                   {
-                                       return new
-                                       {
-                                           sentimentType = sentiment.GetProperty("sentimentType").GetString(),
-                                           averageScore = sentiment.GetProperty("averageScore").GetDouble(),
-                                           start = GetTimeSpan(instance, "start"),
-                                           end = GetTimeSpan(instance, "end")
-                                       };
-                                   })
-                                   //let textualContentModeration = GetCollection(insights, "textualContentModeration", start, end, delegate(JsonElement instance, JsonElement  )
-                                   select new // this is a document going into azure cognitive search 
-                                   {
-                                       id = $"{videoId}_{sceneId}",
-                                       start = start.TotalSeconds,
-                                       end = end.TotalSeconds,
-                                       shots,
-                                       video = CreateVideo(video),
-                                       transcript,
-                                       faces,
-                                       emotions,
-                                       labels,
-                                       audioEffects,
-                                       sentiments,
-                                       playlist = CreatePlaylist(doc.RootElement)
+                                       id = item.GetProperty("id").GetUInt32(),
+                                       text = item.GetProperty("text").GetString(),
+                                       language = item.GetProperty("language").GetString(),
+                                       start = GetTimeSpan(transcriptInstance, "start"),
+                                       end = GetTimeSpan(transcriptInstance, "end")
                                    };
-                WriteFile("scenes_", filename, sceneObjects);
-            }
+                               })
+                               let faces = GetCollection(insights, "faces", start, end, delegate (JsonElement faceInstance, JsonElement face)
+                               {
+                                   return new
+                                   {
+                                       id = face.GetProperty("id").GetUInt32(),
+                                       name = face.GetProperty("name").GetString(),
+                                       start = GetTimeSpan(faceInstance, "start"),
+                                       end = GetTimeSpan(faceInstance, "end"),
+                                       confidence = face.GetProperty("confidence").GetDouble(),
+                                       knownPersonId = face.TryGetProperty("knownPersonId", out JsonElement value2) ? face.GetProperty("knownPersonId").GetString() : null
+                                   };
+                               })
+                               let emotions = GetCollection(insights, "emotions", start, end, delegate (JsonElement element, JsonElement parent)
+                               {
+                                   return new
+                                   {
+                                       id = parent.GetProperty("id").GetUInt32(),
+                                       type = parent.GetProperty("type").GetString(),
+                                       start = GetTimeSpan(element, "start"),
+                                       end = GetTimeSpan(element, "end")
+                                   };
+                               })
+                               let labels = GetCollection(insights, "labels", start, end, delegate (JsonElement element, JsonElement parent)
+                               {
+                                   return new
+                                   {
+                                       id = parent.GetProperty("id").GetUInt32(),
+                                       name = parent.GetProperty("name").GetString(),
+                                       start = GetTimeSpan(element, "start"),
+                                       end = GetTimeSpan(element, "end"),
+                                       confidence = element.GetProperty("confidence").GetDouble()
+                                   };
+                               })
+                               let audioEffects = GetCollection(insights, "audioEffects", start, end, delegate (JsonElement instance, JsonElement effect)
+                               {
+                                   return new
+                                   {
+                                       type = effect.GetProperty("type").GetString(),
+                                       start = GetTimeSpan(instance, "start"),
+                                       end = GetTimeSpan(instance, "end")
+                                   };
+                               })
+                               let sentiments = GetCollection(insights, "sentiments", start, end, delegate (JsonElement instance, JsonElement sentiment)
+                               {
+                                   return new
+                                   {
+                                       sentimentType = sentiment.GetProperty("sentimentType").GetString(),
+                                       averageScore = sentiment.GetProperty("averageScore").GetDouble(),
+                                       start = GetTimeSpan(instance, "start"),
+                                       end = GetTimeSpan(instance, "end")
+                                   };
+                               })
+                               //let textualContentModeration = GetCollection(insights, "textualContentModeration", start, end, delegate(JsonElement instance, JsonElement  )
+                               select new // this is a document going into azure cognitive search 
+                               {
+                                   id = $"{videoId}_{sceneId}",
+                                   start = start.TotalSeconds,
+                                   end = end.TotalSeconds,
+                                   shots,
+                                   video = CreateVideo(video),
+                                   transcript,
+                                   faces,
+                                   emotions,
+                                   labels,
+                                   audioEffects,
+                                   sentiments,
+                                   playlist = CreatePlaylist(doc.RootElement)
+                               };
+            WriteFile("scenes_", filename, sceneObjects);
         }
 
         private static object CreatePlaylist(JsonElement rootElement)

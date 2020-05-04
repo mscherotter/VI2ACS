@@ -4,7 +4,7 @@ Created by Michael S. Scherotter
 Convert Azure Video Indexer JSON data into Azure Cognitive Search scene and thumbnail indices.
 
 ## Usage
-1. Build source code src\VIToACS.csproj
+1. Build source code src\VIToACS.csproj.  VI2oACS converts the JSON from video indexer to the JSON to insert documents into Azure Cognitive Search.
 2. Run video files through Microsoft Video Indexer to extract .JSON insights files
 3. Put .JSON insights files into folder and put the folder name into the $vi_source_files variable in the ConfigureSearchService.ps1 script. 
 4. Create an Azure Search service and put the admin key and search service name into the $adminKey and $searchName variables in the  ConfigureSearchService.ps1

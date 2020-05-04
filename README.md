@@ -14,7 +14,7 @@ Convert Azure [Video Indexer](https://www.videoindexer.ai/) insight data into [A
 Now all of the video index data is in two search indexes in Azure Cognitive Search, **scenesindex**, and **thumbnailindex**. 
 
 ## Scene Index
-The **sceneindex** lets you create queries for scenes that have certain metadata, including transcript, faces, emotions, sentiment, labels, and audio effects
+The **sceneindex** lets you create queries for scenes that have certain metadata, including transcript, faces, emotions, sentiment, labels, and audio effects.  There should be one document for each scene in each video.
 
 ## Thumbnail Index
-The **thumbnailindex** lets you create queries for thumbnails that have been extracted by video indexer that have certain metadata including faces, labels, OCR, keywords, and shot tags 
+The **thumbnailindex** lets you create queries for thumbnails that have been extracted by video indexer that have certain metadata including faces, labels, OCR, keywords, and shot tags.  There should be one document for each thumbnail in each video.

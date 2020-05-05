@@ -16,5 +16,9 @@ Now all of the video index data is in two search indexes in Azure Cognitive Sear
 ## Scene Index
 The **sceneindex** lets you create queries for scenes that have certain metadata, including transcript, faces, emotions, sentiment, labels, and audio effects.  There should be one document for each scene in each video.
 
+### Query Syntax
+- Search for scenes that have a specific person: _$count=true&$filter=faces/any(face: face/name eq 'John Doe')&$select=start,end_
+- Search for scenes that have a refrigerator in them: _$count=true&$filter=labels/any(name: label/name eq 'refrigerator')&$select=start,end_
+
 ## Thumbnail Index
-The **thumbnailindex** lets you create queries for thumbnails that have been extracted by video indexer that have certain metadata including faces, labels, OCR, keywords, and shot tags.  There should be one document for each thumbnail in each video.
+The **thumbnailindex** lets you create queries for keyframe thumbnails that have been extracted by video indexer that have certain metadata including faces, labels, OCR, keywords, and shot tags.  There should be one thumbnail document for each keyframe in each video.

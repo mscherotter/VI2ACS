@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "VIToACS": {
-      "commandName": "Project",
-      "commandLineArgs": "D:\\Source\\Repos\\Randa\\build2018.json"
-    }
-  }
-}

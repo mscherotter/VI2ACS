@@ -36,10 +36,10 @@ foreach ($sourceFile in $sourceFiles){
     Write-Output ("Creating documents from video indexer from " + $path)
     ..\src\bin\Debug\netcoreapp3.1\VIToACS.exe $path
 
-    $contentPath = ".\scenes_"+ $sourceFile + ".json"
+    $contentPath = $vi_source_files + "\scenes_"+ $sourceFile + ".json"
     Invoke-RestMethod -Uri ($url + "indexes/sceneindex/docs/index" + $apiVersion) -Headers $headers -Method Post -Body (Get-Content $contentPath -Raw)  # | ConvertTo-Json
 
-    $contentPath = ".\thumbnails_"+ $sourceFile + ".json" 
+    $contentPath = $vi_source_files "\thumbnails_"+ $sourceFile + ".json" 
     Invoke-RestMethod -Uri ($url + "indexes/thumbnailindex/docs/index" + $apiVersion) -Headers $headers -Method Post -Body (Get-Content $contentPath -Raw)  #| ConvertTo-Json
 }
 

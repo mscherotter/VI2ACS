@@ -27,34 +27,48 @@ namespace VIToACS.Services
 
         public void CreateSceneIndex()
         {
+            string indexName = _config.SceneIndexName;
             if (_config.DeleteIndexIfExists)
             {
-                DeleteIndexIfExists(_config.SceneIndexName, _client);
+                DeleteIndexIfExists(indexName, _client);
             }
-            var definition = new Microsoft.Azure.Search.Models.Index()
+            if (!_client.Indexes.Exists(indexName))
             {
-                Name = _config.SceneIndexName,
-                Fields = FieldBuilder.BuildForType<Scene>()
-            };
-
-            _client.Indexes.Create(definition);
+                var definition = new Microsoft.Azure.Search.Models.Index()
+                {
+                    Name = indexName,
+                    Fields = FieldBuilder.BuildForType<Scene>()
+                };
+                _client.Indexes.Create(definition);
+            }
+            else
+            {
+                _logger.Warn($"The index { indexName } already exists.");
+            }
         }
 
         public void CreateThumbnailIndex()
         {
+            string indexName = _config.ThumbnailIndexName;
             if (_config.DeleteIndexIfExists)
             {
-                DeleteIndexIfExists(_config.ThumbnailIndexName, _client);
+                DeleteIndexIfExists(indexName, _client);
             }
-
-            var definition = new Microsoft.Azure.Search.Models.Index()
+            if (!_client.Indexes.Exists(indexName))
             {
-                Name = _config.ThumbnailIndexName,
-                Fields = FieldBuilder.BuildForType<Thumbnail>()
-            };
-
-            _client.Indexes.Create(definition);
+                var definition = new Microsoft.Azure.Search.Models.Index()
+                {
+                    Name = indexName,
+                    Fields = FieldBuilder.BuildForType<Thumbnail>()
+                };
+                _client.Indexes.Create(definition);
+            }
+            else
+            {
+                _logger.Warn($"The index { indexName } already exists.");
+            }
         }
+
 
         private void DeleteIndexIfExists(string indexName, SearchServiceClient serviceClient)
         {

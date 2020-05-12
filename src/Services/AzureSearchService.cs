@@ -21,8 +21,10 @@ namespace VIToACS.Services
 
         public void CreateSceneIndex()
         {
-            DeleteIndexIfExists(_config.SceneIndexName, GetClient());
-
+            if (_config.DeleteIndexIfExists)
+            {
+                DeleteIndexIfExists(_config.SceneIndexName, GetClient());
+            }
             var definition = new Microsoft.Azure.Search.Models.Index()
             {
                 Name = _config.SceneIndexName,
@@ -34,13 +36,25 @@ namespace VIToACS.Services
 
         public void CreateThumbnailIndex()
         {
-            throw new NotImplementedException();
+            if (_config.DeleteIndexIfExists)
+            {
+                DeleteIndexIfExists(_config.ThumbnailIndexName, GetClient());
+            }
+
+            var definition = new Microsoft.Azure.Search.Models.Index()
+            {
+                Name = _config.ThumbnailIndexName,
+                Fields = FieldBuilder.BuildForType<Thumbnail>()
+            };
+
+            GetClient().Indexes.Create(definition);
         }
 
-        private static void DeleteIndexIfExists(string indexName, SearchServiceClient serviceClient)
+        private void DeleteIndexIfExists(string indexName, SearchServiceClient serviceClient)
         {
             if (serviceClient.Indexes.Exists(indexName))
             {
+                _logger.Info($"Deleting the index { indexName }.");
                 serviceClient.Indexes.Delete(indexName);
             }
         }

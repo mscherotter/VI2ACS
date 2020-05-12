@@ -15,7 +15,7 @@ namespace VIToACS.Models
 
         public Video Video { get; set; }
 
-        public Transcript Transcript { get; set; }
+        public List<Transcript> Transcript { get; set; }
 
         public List<Face> Faces { get; set; }
 

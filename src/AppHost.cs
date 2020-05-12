@@ -1,4 +1,5 @@
 ﻿using log4net;
+using System.Threading.Tasks;
 using VIToACS.Interfaces;
 
 namespace VIToACS
@@ -18,12 +19,23 @@ namespace VIToACS
             _logger = logger;
         }
 
-        public void Run()
+        public async Task Run()
         {
             _logger.Info("Starting the Application.");
 
             _logger.Info("Creating the Scene Index.");
             _azureSearchService.CreateSceneIndex();
+
+            _logger.Info("Creating the Thumbnail Index.");
+            _azureSearchService.CreateThumbnailIndex();
+
+            foreach (var parsedDocument in _insightsReaderService.ReadInsightsFiles())
+            {
+                _documentWriterService.WriteScenesDocument(parsedDocument.FileName, parsedDocument.ParsedScenesJson);
+                _documentWriterService.WriteThumbnailsDocument(parsedDocument.FileName, parsedDocument.ParsedThumbnailsJson);
+            }
+
+            _logger.Info("Finishing the Application.");
         }
     }
 }

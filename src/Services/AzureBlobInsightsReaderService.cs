@@ -1,7 +1,9 @@
 ﻿using log4net;
 using System;
+using System.Collections.Generic;
 using VIToACS.Configurations;
 using VIToACS.Interfaces;
+using VIToACS.Models;
 
 namespace VIToACS.Services
 {
@@ -17,9 +19,10 @@ namespace VIToACS.Services
             _logger = logger;
         }
 
-        public void ReadInsightsFile(string fileName)
+        public IEnumerable<ParsedDocument> ReadInsightsFiles()
         {
-            Console.WriteLine(fileName);
+            throw new NotImplementedException();
         }
+
     }
 }

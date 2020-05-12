@@ -7,7 +7,7 @@ namespace VIToACS.Models
         public int Id { get; set; }
 
         [IsFilterable, IsFacetable]
-        public string Type { get; set; }
+        public string Name { get; set; }
 
         public double Start { get; set; }
 

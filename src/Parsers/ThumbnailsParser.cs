@@ -103,12 +103,10 @@ namespace VIToACS.Parsers
                         });
                     }
                 }
-
-
-                return thumbnails;
+                
             }
 
-            return null;
+            return thumbnails;
         }
     }
 }

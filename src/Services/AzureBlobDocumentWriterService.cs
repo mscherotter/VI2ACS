@@ -24,7 +24,9 @@ namespace VIToACS.Services
             _logger = logger;
             _blobServiceClient = new BlobServiceClient(_config.AzureBlob.ConnectionString);
             _scenesContainerClient = _blobServiceClient.GetBlobContainerClient(_config.AzureBlob.ScenesContainer);
+            _scenesContainerClient.CreateIfNotExists();
             _thumbnailsContainerClient = _blobServiceClient.GetBlobContainerClient(_config.AzureBlob.ThumbnailsContainer);
+            _thumbnailsContainerClient.CreateIfNotExists();
         }
 
         public void WriteScenesDocument(string fileName, string content)

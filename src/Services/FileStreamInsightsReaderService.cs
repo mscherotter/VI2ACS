@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using VIToACS.Configurations;
 using VIToACS.Interfaces;
@@ -33,8 +34,12 @@ namespace VIToACS.Services
                 IEnumerable<Scene> scenes = GetScenes(file);
                 var scenesJson = JsonSerializer.Serialize(scenes, new JsonSerializerOptions { WriteIndented = true, IgnoreNullValues = true });
 
+                _logger.Debug($"The file { file } has { scenes.Count() } scenes.");
+
                 IEnumerable<Thumbnail> thumbnails = GetThumbnails(file);
                 var thumbnailsJson = JsonSerializer.Serialize(thumbnails, new JsonSerializerOptions { WriteIndented = true, IgnoreNullValues = true });
+
+                _logger.Debug($"The file { file } has { thumbnails.Count() } thumbnails.");
 
                 yield return new ParsedDocument
                 {

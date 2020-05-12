@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text.Json;
 using VIToACS.Models;
 
@@ -155,11 +156,9 @@ namespace VIToACS.Parsers
                     Playlist = Utils.CreatePlaylist(doc.RootElement)
                 });
 
-
-                return scenes;
+                
             }
-
-            return null;
+            return scenes;
         }
     }
 }

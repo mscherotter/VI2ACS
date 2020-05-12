@@ -84,9 +84,7 @@ namespace VIToACS.Parsers
         {
             var elementStart = TimeSpan.Parse(element.GetProperty("start").GetString(), CultureInfo.InvariantCulture);
             var elementEnd = TimeSpan.Parse(element.GetProperty("end").GetString(), CultureInfo.InvariantCulture);
-            return elementStart >= start && elementEnd <= end;
-
-
+            return (elementStart >= start && elementStart <= end) || (elementEnd >= start && elementEnd <= end);
         }
 
         public static double GetTimeSpan(JsonElement element, string name)

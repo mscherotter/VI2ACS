@@ -1,9 +1,11 @@
-﻿using Azure.Storage.Blobs;
+﻿using Azure;
+using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using log4net;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using VIToACS.Configurations;
 using VIToACS.Interfaces;
@@ -28,6 +30,7 @@ namespace VIToACS.Services
             _logger = logger;
             _blobServiceClient = new BlobServiceClient(_config.AzureBlob.ConnectionString);
             _containerClient = _blobServiceClient.GetBlobContainerClient(_config.AzureBlob.InsightsContainer);
+            _containerClient.CreateIfNotExists();
         }
 
         public IEnumerable<ParsedDocument> ReadInsightsFiles()
@@ -43,8 +46,12 @@ namespace VIToACS.Services
                 IEnumerable<Scene> scenes = GetScenes(downloadFilePath);
                 var scenesJson = JsonSerializer.Serialize(scenes, new JsonSerializerOptions { WriteIndented = true, IgnoreNullValues = true });
 
+                _logger.Debug($"The file { file } has { scenes.Count() } scenes.");
+
                 IEnumerable<Thumbnail> thumbnails = GetThumbnails(downloadFilePath);
                 var thumbnailsJson = JsonSerializer.Serialize(thumbnails, new JsonSerializerOptions { WriteIndented = true, IgnoreNullValues = true });
+
+                _logger.Debug($"The file { file } has { thumbnails.Count() } thumbnails.");
 
                 File.Delete(downloadFilePath);
 

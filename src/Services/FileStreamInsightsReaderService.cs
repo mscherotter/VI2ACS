@@ -28,7 +28,7 @@ namespace VIToACS.Services
         {
             foreach (string file in Directory.EnumerateFiles(_config.FileStream.InsightsPath, "*.json"))
             {
-                _logger.Info($"Reading the file { file }.");
+                _logger.Debug($"Reading the file { file }.");
 
                 IEnumerable<Scene> scenes = GetScenes(file);
                 var scenesJson = JsonSerializer.Serialize(scenes, new JsonSerializerOptions { WriteIndented = true, IgnoreNullValues = true });
@@ -49,7 +49,7 @@ namespace VIToACS.Services
 
         private IEnumerable<Scene> GetScenes(string fileName)
         {
-            _logger.Info($"Parsing scenes in the file { fileName }.");
+            _logger.Info($"Parsing scenes from the file { fileName }.");
             IEnumerable<Scene> scenes = null;
             try
             {
@@ -73,7 +73,7 @@ namespace VIToACS.Services
 
         private IEnumerable<Thumbnail> GetThumbnails(string fileName)
         {
-            _logger.Info($"Parsing thumbnails in the file { fileName }.");
+            _logger.Info($"Parsing thumbnails from the file { fileName }.");
             IEnumerable<Thumbnail> thumbnails = null;
             try
             {

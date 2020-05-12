@@ -29,12 +29,20 @@ namespace VIToACS
             _logger.Info("Creating the Thumbnail Index.");
             _azureSearchService.CreateThumbnailIndex();
 
+
             foreach (var parsedDocument in _insightsReaderService.ReadInsightsFiles())
             {
+                // Scenes
                 _documentWriterService.WriteScenesDocument(parsedDocument.FileName, parsedDocument.ParsedScenesJson);
+                _logger.Info($"Uploading scenes from the file { parsedDocument.FileName }.");
                 _azureSearchService.UploadSceneDocuments(parsedDocument.Scenes);
+                
+                // Thumbnails
                 _documentWriterService.WriteThumbnailsDocument(parsedDocument.FileName, parsedDocument.ParsedThumbnailsJson);
+                _logger.Info($"Uploading thumbnails from the file { parsedDocument.FileName }.");
                 _azureSearchService.UploadThumbnailDocuments(parsedDocument.Thumbnails);
+
+                _logger.Debug($"The file { parsedDocument.FileName } has been parsed and uploaded.");
             }
 
             _logger.Info("Finishing the Application.");

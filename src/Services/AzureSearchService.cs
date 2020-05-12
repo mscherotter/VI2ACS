@@ -60,7 +60,7 @@ namespace VIToACS.Services
         {
             if (serviceClient.Indexes.Exists(indexName))
             {
-                _logger.Info($"Deleting the index { indexName }.");
+                _logger.Warn($"Deleting the index { indexName }.");
                 serviceClient.Indexes.Delete(indexName);
             }
         }

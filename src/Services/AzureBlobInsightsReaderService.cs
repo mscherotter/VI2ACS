@@ -36,7 +36,7 @@ namespace VIToACS.Services
             foreach (BlobItem blobItem in _containerClient.GetBlobs())
             {
                 var file = blobItem.Name;
-                _logger.Info($"Reading the file { file }.");
+                _logger.Debug($"Reading the file { file }.");
 
                 string downloadFilePath = DownloadBlob(file);
 
@@ -60,7 +60,7 @@ namespace VIToACS.Services
 
         private IEnumerable<Scene> GetScenes(string fileName)
         {
-            _logger.Info($"Parsing scenes in the file { fileName }.");
+            _logger.Info($"Parsing scenes from the file { fileName }.");
             IEnumerable<Scene> scenes = null;
             try
             {
@@ -85,7 +85,7 @@ namespace VIToACS.Services
 
         private IEnumerable<Thumbnail> GetThumbnails(string fileName)
         {
-            _logger.Info($"Parsing thumbnails in the file { fileName }.");
+            _logger.Info($"Parsing thumbnails from the file { fileName }.");
 
             IEnumerable<Thumbnail> thumbnails = null;
             try

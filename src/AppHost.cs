@@ -32,7 +32,9 @@ namespace VIToACS
             foreach (var parsedDocument in _insightsReaderService.ReadInsightsFiles())
             {
                 _documentWriterService.WriteScenesDocument(parsedDocument.FileName, parsedDocument.ParsedScenesJson);
+                _azureSearchService.UploadSceneDocuments(parsedDocument.Scenes);
                 _documentWriterService.WriteThumbnailsDocument(parsedDocument.FileName, parsedDocument.ParsedThumbnailsJson);
+                _azureSearchService.UploadThumbnailDocuments(parsedDocument.Thumbnails);
             }
 
             _logger.Info("Finishing the Application.");

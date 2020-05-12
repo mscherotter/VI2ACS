@@ -34,7 +34,14 @@ namespace VIToACS.Services
                 IEnumerable<Thumbnail> thumbnails = GetThumbnails(file);
                 var thumbnailsJson = JsonSerializer.Serialize(thumbnails, new JsonSerializerOptions { WriteIndented = true, IgnoreNullValues = true });
 
-                yield return new ParsedDocument { FileName = file, ParsedScenesJson = scenesJson, ParsedThumbnailsJson = thumbnailsJson };
+                yield return new ParsedDocument
+                {
+                    FileName = file,
+                    ParsedScenesJson = scenesJson,
+                    ParsedThumbnailsJson = thumbnailsJson,
+                    Scenes = scenes,
+                    Thumbnails = thumbnails
+                };
             }
         }
 

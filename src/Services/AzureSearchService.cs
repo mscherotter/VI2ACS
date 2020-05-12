@@ -1,9 +1,13 @@
 ﻿using log4net;
 using Microsoft.Azure.Search;
+using Microsoft.Azure.Search.Models;
+using Nest;
 using System;
+using System.Collections.Generic;
 using VIToACS.Configurations;
 using VIToACS.Interfaces;
 using VIToACS.Models;
+using IndexAction = Microsoft.Azure.Search.Models.IndexAction;
 
 namespace VIToACS.Services
 {
@@ -17,6 +21,14 @@ namespace VIToACS.Services
         {
             _config = config;
             _logger = logger;
+        }
+        public SearchServiceClient GetClient()
+        {
+            if (_client == null)
+            {
+                _client = new SearchServiceClient(_config.Name, new SearchCredentials(_config.AdminKey));
+            }
+            return _client;
         }
 
         public void CreateSceneIndex()
@@ -59,16 +71,43 @@ namespace VIToACS.Services
             }
         }
 
-        public SearchServiceClient GetClient()
+
+        public void UploadSceneDocuments(IEnumerable<Scene> sceneDocuments)
         {
-            if (_client == null)
+            SearchIndexClient indexClient = new SearchIndexClient(_config.Name, _config.SceneIndexName, GetClient().SearchCredentials);
+            var actions = new List<IndexAction<Scene>>();
+            foreach(var sceneDocument in sceneDocuments)
             {
-                _client = new SearchServiceClient(_config.Name, new SearchCredentials(_config.AdminKey));
+                actions.Add(IndexAction.MergeOrUpload(sceneDocument));
             }
-            return _client;
+            var batch = IndexBatch.New(actions);
+            try
+            {
+                indexClient.Documents.Index(batch);
+            }
+            catch(Exception ex)
+            {
+                _logger.Error(ex.Message);
+            }
         }
 
-        #region IDisposable Support
+        public void UploadThumbnailDocuments(IEnumerable<Thumbnail> thumbnailDocuments)
+        {
+            SearchIndexClient indexClient = new SearchIndexClient(_config.Name, _config.ThumbnailIndexName, GetClient().SearchCredentials);
+            var actions = new List<IndexAction<Thumbnail>>();
+            foreach (var thumbnailDocument in thumbnailDocuments)
+            {
+                actions.Add(IndexAction.MergeOrUpload(thumbnailDocument));
+            }
+            var batch = IndexBatch.New(actions);
+            try { 
+                indexClient.Documents.Index(batch);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex.Message);
+            }
+        }
 
         private bool disposedValue = false;
 
@@ -89,6 +128,5 @@ namespace VIToACS.Services
             Dispose(true);
         }
 
-        #endregion
     }
 }

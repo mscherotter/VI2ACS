@@ -38,20 +38,35 @@ namespace VIToACS.Services
 
             foreach (BlobItem blobItem in _containerClient.GetBlobs())
             {
+                string scenesJson = string.Empty;
+                string thumbnailsJson = string.Empty;
+
                 var file = blobItem.Name;
                 _logger.Debug($"Reading the file { file }.");
 
                 string downloadFilePath = DownloadBlob(file);
 
                 IEnumerable<Scene> scenes = GetScenes(downloadFilePath);
-                var scenesJson = JsonSerializer.Serialize(scenes, new JsonSerializerOptions { WriteIndented = true, IgnoreNullValues = true });
-
-                _logger.Debug($"The file { file } has { scenes.Count() } scenes.");
+                if (scenes == null)
+                {
+                    _logger.Warn($"It was not possible to extract the scenes from the file { file }.");
+                }
+                else
+                {
+                    scenesJson = JsonSerializer.Serialize(scenes, new JsonSerializerOptions { WriteIndented = true, IgnoreNullValues = true });
+                    _logger.Debug($"The file { file } has { scenes.Count() } scenes.");
+                }
 
                 IEnumerable<Thumbnail> thumbnails = GetThumbnails(downloadFilePath);
-                var thumbnailsJson = JsonSerializer.Serialize(thumbnails, new JsonSerializerOptions { WriteIndented = true, IgnoreNullValues = true });
-
-                _logger.Debug($"The file { file } has { thumbnails.Count() } thumbnails.");
+                if (thumbnails == null)
+                {
+                    _logger.Warn($"It was not possible to thumbnails the scenes from the file { file }.");
+                }
+                else
+                {
+                    thumbnailsJson = JsonSerializer.Serialize(thumbnails, new JsonSerializerOptions { WriteIndented = true, IgnoreNullValues = true });
+                    _logger.Debug($"The file { file } has { thumbnails.Count() } thumbnails.");
+                }
 
                 File.Delete(downloadFilePath);
 
@@ -81,6 +96,11 @@ namespace VIToACS.Services
             {
                 _logger.Error($"File {fileName} was not found.");
             }
+            catch (JsonException)
+            {
+                _logger.Error($"Error parsing the JSON file {fileName}.");
+                return null;
+            }
             catch (Exception ex)
             {
                 _logger.Error(ex.Message);
@@ -107,6 +127,11 @@ namespace VIToACS.Services
             catch (FileNotFoundException)
             {
                 _logger.Error($"File {fileName} was not found.");
+            }
+            catch (JsonException)
+            {
+                _logger.Error($"Error parsing the JSON file {fileName}.");
+                return null;
             }
             catch (Exception ex)
             {

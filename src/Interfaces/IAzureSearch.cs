@@ -1,5 +1,4 @@
-﻿using Microsoft.Azure.Search;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using VIToACS.Models;
 
 namespace VIToACS.Interfaces
@@ -10,6 +9,5 @@ namespace VIToACS.Interfaces
         void CreateThumbnailIndex();
         void UploadSceneDocuments(IEnumerable<Scene> sceneDocuments);
         void UploadThumbnailDocuments(IEnumerable<Thumbnail> thumbnailDocuments);
-        SearchServiceClient GetClient();
     }
 }

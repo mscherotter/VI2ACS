@@ -1,15 +1,10 @@
-﻿using Azure.Storage.Blobs;
-using Azure.Storage.Blobs.Models;
+﻿using Azure;
+using Azure.Storage.Blobs;
 using log4net;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Reflection.Metadata;
-using System.Text.Json;
 using VIToACS.Configurations;
 using VIToACS.Interfaces;
-using VIToACS.Models;
-using VIToACS.Parsers;
 
 namespace VIToACS.Services
 {
@@ -23,6 +18,8 @@ namespace VIToACS.Services
 
         public AzureBlobDocumentWriterService(WriterConfig config, ILog logger)
         {
+            if (config == null || logger == null)
+                throw new NullReferenceException();
             _config = config;
             _logger = logger;
             _blobServiceClient = new BlobServiceClient(_config.AzureBlob.ConnectionString);
@@ -34,10 +31,11 @@ namespace VIToACS.Services
         {
             var newFilename = _config.ScenesDocumentPrefix + Path.GetFileName(fileName);
             _logger.Info($"Writing the file { newFilename }.");
-            var newPath = WriteFile(_config.AzureBlob.TempUploadFilePath, content, newFilename);
 
             try
             {
+                var newPath = WriteFile(_config.AzureBlob.TempUploadFilePath, content, newFilename);
+
                 // Get a reference to a blob
                 BlobClient blobClient = _scenesContainerClient.GetBlobClient(newFilename);
                 using FileStream uploadFileStream = File.OpenRead(newPath);
@@ -45,9 +43,15 @@ namespace VIToACS.Services
                 uploadFileStream.Close();
                 File.Delete(newPath);
             }
-            catch (Exception ex)
+            catch (FileNotFoundException ex)
             {
                 _logger.Error(ex.Message);
+                throw;
+            }
+            catch (RequestFailedException ex)
+            {
+                _logger.Error(ex.Message);
+                throw;
             }
         }
 
@@ -55,10 +59,11 @@ namespace VIToACS.Services
         {
             var newFilename = _config.ThumbnailsDocumentPrefix + Path.GetFileName(fileName);
             _logger.Info($"Writing the file { newFilename }.");
-            var newPath = WriteFile(_config.AzureBlob.TempUploadFilePath, content, newFilename);
-
+            
             try
-            { 
+            {
+                var newPath = WriteFile(_config.AzureBlob.TempUploadFilePath, content, newFilename);
+
                 // Get a reference to a blob
                 BlobClient blobClient = _thumbnailsContainerClient.GetBlobClient(newFilename);
                 using FileStream uploadFileStream = File.OpenRead(newPath);
@@ -66,9 +71,15 @@ namespace VIToACS.Services
                 uploadFileStream.Close();
                 File.Delete(newPath);
             }
-            catch (Exception ex)
+            catch (FileNotFoundException ex)
             {
                 _logger.Error(ex.Message);
+                throw;
+            }
+            catch (RequestFailedException ex)
+            {
+                _logger.Error(ex.Message);
+                throw;
             }
         }
 

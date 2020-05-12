@@ -1,4 +1,5 @@
 ﻿using log4net;
+using System;
 using System.IO;
 using VIToACS.Configurations;
 using VIToACS.Interfaces;
@@ -12,6 +13,8 @@ namespace VIToACS.Services
 
         public FileStreamDocumentWriterService(WriterConfig config, ILog logger)
         {
+            if (config == null || logger == null)
+                throw new NullReferenceException();
             _config = config;
             _logger = logger;
         }

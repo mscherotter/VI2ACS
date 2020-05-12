@@ -18,6 +18,8 @@ namespace VIToACS.Services
 
         public FileStreamInsightsReaderService(ReaderConfig config, ILog logger)
         {
+            if (config == null || logger == null)
+                throw new NullReferenceException();
             _config = config;
             _logger = logger;
         }

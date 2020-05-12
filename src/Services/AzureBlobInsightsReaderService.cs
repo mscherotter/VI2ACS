@@ -4,7 +4,6 @@ using log4net;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection.Metadata;
 using System.Text.Json;
 using VIToACS.Configurations;
 using VIToACS.Interfaces;
@@ -23,6 +22,8 @@ namespace VIToACS.Services
 
         public AzureBlobInsightsReaderService(ReaderConfig config, ILog logger)
         {
+            if (config == null || logger == null)
+                throw new NullReferenceException();
             _config = config;
             _logger = logger;
             _blobServiceClient = new BlobServiceClient(_config.AzureBlob.ConnectionString);

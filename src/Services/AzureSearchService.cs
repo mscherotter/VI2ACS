@@ -1,13 +1,11 @@
 ﻿using log4net;
 using Microsoft.Azure.Search;
 using Microsoft.Azure.Search.Models;
-using Nest;
 using System;
 using System.Collections.Generic;
 using VIToACS.Configurations;
 using VIToACS.Interfaces;
 using VIToACS.Models;
-using IndexAction = Microsoft.Azure.Search.Models.IndexAction;
 
 namespace VIToACS.Services
 {
@@ -16,26 +14,22 @@ namespace VIToACS.Services
         private readonly AzureSearchConfig _config;
         private readonly ILog _logger;
         private SearchServiceClient _client;
+        private bool disposedValue = false;
 
         public AzureSearchService(AzureSearchConfig config, ILog logger)
         {
+            if (config == null || logger == null)
+                throw new NullReferenceException();
             _config = config;
             _logger = logger;
-        }
-        public SearchServiceClient GetClient()
-        {
-            if (_client == null)
-            {
-                _client = new SearchServiceClient(_config.Name, new SearchCredentials(_config.AdminKey));
-            }
-            return _client;
+            _client = new SearchServiceClient(_config.Name, new SearchCredentials(_config.AdminKey));
         }
 
         public void CreateSceneIndex()
         {
             if (_config.DeleteIndexIfExists)
             {
-                DeleteIndexIfExists(_config.SceneIndexName, GetClient());
+                DeleteIndexIfExists(_config.SceneIndexName, _client);
             }
             var definition = new Microsoft.Azure.Search.Models.Index()
             {
@@ -43,14 +37,14 @@ namespace VIToACS.Services
                 Fields = FieldBuilder.BuildForType<Scene>()
             };
 
-            GetClient().Indexes.Create(definition);
+            _client.Indexes.Create(definition);
         }
 
         public void CreateThumbnailIndex()
         {
             if (_config.DeleteIndexIfExists)
             {
-                DeleteIndexIfExists(_config.ThumbnailIndexName, GetClient());
+                DeleteIndexIfExists(_config.ThumbnailIndexName, _client);
             }
 
             var definition = new Microsoft.Azure.Search.Models.Index()
@@ -59,7 +53,7 @@ namespace VIToACS.Services
                 Fields = FieldBuilder.BuildForType<Thumbnail>()
             };
 
-            GetClient().Indexes.Create(definition);
+            _client.Indexes.Create(definition);
         }
 
         private void DeleteIndexIfExists(string indexName, SearchServiceClient serviceClient)
@@ -71,10 +65,12 @@ namespace VIToACS.Services
             }
         }
 
-
         public void UploadSceneDocuments(IEnumerable<Scene> sceneDocuments)
         {
-            SearchIndexClient indexClient = new SearchIndexClient(_config.Name, _config.SceneIndexName, GetClient().SearchCredentials);
+            if (sceneDocuments == null)
+                throw new NullReferenceException();
+
+            SearchIndexClient indexClient = new SearchIndexClient(_config.Name, _config.SceneIndexName, _client.SearchCredentials);
             var actions = new List<IndexAction<Scene>>();
             foreach(var sceneDocument in sceneDocuments)
             {
@@ -85,15 +81,23 @@ namespace VIToACS.Services
             {
                 indexClient.Documents.Index(batch);
             }
-            catch(Exception ex)
+            catch(IndexBatchException ex)
             {
                 _logger.Error(ex.Message);
+                throw;
+            }
+            finally
+            {
+                indexClient.Dispose();
             }
         }
 
         public void UploadThumbnailDocuments(IEnumerable<Thumbnail> thumbnailDocuments)
         {
-            SearchIndexClient indexClient = new SearchIndexClient(_config.Name, _config.ThumbnailIndexName, GetClient().SearchCredentials);
+            if (thumbnailDocuments == null)
+                throw new NullReferenceException();
+
+            SearchIndexClient indexClient = new SearchIndexClient(_config.Name, _config.ThumbnailIndexName, _client.SearchCredentials);
             var actions = new List<IndexAction<Thumbnail>>();
             foreach (var thumbnailDocument in thumbnailDocuments)
             {
@@ -103,13 +107,16 @@ namespace VIToACS.Services
             try { 
                 indexClient.Documents.Index(batch);
             }
-            catch (Exception ex)
+            catch (IndexBatchException ex)
             {
                 _logger.Error(ex.Message);
+                throw;
+            }
+            finally
+            {
+                indexClient.Dispose();
             }
         }
-
-        private bool disposedValue = false;
 
         protected virtual void Dispose(bool disposing)
         {
@@ -127,6 +134,5 @@ namespace VIToACS.Services
         {
             Dispose(true);
         }
-
     }
 }

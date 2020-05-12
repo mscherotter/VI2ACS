@@ -1,7 +1,7 @@
 ﻿using log4net;
 using System;
-using VIToACS.Interfaces;
 using VIToACS.Configurations;
+using VIToACS.Interfaces;
 using VIToACS.Services;
 
 namespace VIToACS.Factories

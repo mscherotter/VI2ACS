@@ -43,9 +43,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="appsettings.azureblob.sample.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Update="appsettings.filestream.sample.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

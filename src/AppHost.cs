@@ -19,7 +19,7 @@ namespace VIToACS
             _logger = logger;
         }
 
-        public async Task Run()
+        public void Run()
         {
             _logger.Info("Starting the Application.");
 

@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text.Json;
 using VIToACS.Models;
 
-
 namespace VIToACS.Parsers
 {
     public static class ThumbnailsParser

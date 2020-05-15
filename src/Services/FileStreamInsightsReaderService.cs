@@ -20,7 +20,10 @@ namespace VIToACS.Services
         public FileStreamInsightsReaderService(ReaderConfig config, ILog logger)
         {
             if (config == null || logger == null)
+            {
                 throw new NullReferenceException();
+            }
+
             _config = config;
             _logger = logger;
         }
@@ -32,12 +35,20 @@ namespace VIToACS.Services
                 string scenesJson = string.Empty;
                 string thumbnailsJson = string.Empty;
 
+                if (!Directory.Exists(_config.FileStream.FailedInsightsPath))
+                {
+                    Directory.CreateDirectory(_config.FileStream.FailedInsightsPath);
+                }
+
+                string failedFile = Path.Combine(_config.FileStream.FailedInsightsPath, Path.GetFileName(file));
+
                 _logger.Debug($"Reading the file { file }.");
 
                 IEnumerable<Scene> scenes = GetScenes(file);
                 if (scenes == null)
                 {
                     _logger.Warn($"It was not possible to extract the scenes from the file { file }.");
+                    File.Copy(file, failedFile, true);
                 }
                 else
                 {
@@ -49,6 +60,7 @@ namespace VIToACS.Services
                 if (thumbnails == null)
                 {
                     _logger.Warn($"It was not possible to thumbnails the scenes from the file { file }.");
+                    File.Copy(file, failedFile, true);
                 }
                 else
                 {
@@ -82,6 +94,7 @@ namespace VIToACS.Services
             catch (FileNotFoundException)
             {
                 _logger.Error($"File {fileName} was not found.");
+                return null;
             }
             catch (JsonException)
             {
@@ -91,7 +104,7 @@ namespace VIToACS.Services
             catch (Exception ex)
             {
                 _logger.Error(ex.Message);
-                throw;
+                return null;
             }
             return scenes;
         }
@@ -111,6 +124,7 @@ namespace VIToACS.Services
             catch (FileNotFoundException)
             {
                 _logger.Error($"File {fileName} was not found.");
+                return null;
             }
             catch (JsonException)
             {
@@ -120,7 +134,7 @@ namespace VIToACS.Services
             catch (Exception ex)
             {
                 _logger.Error(ex.Message);
-                throw;
+                return null;
             }
             return thumbnails;
         }

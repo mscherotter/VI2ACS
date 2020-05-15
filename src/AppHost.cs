@@ -1,6 +1,4 @@
 ﻿using log4net;
-using System.Linq;
-using System.Threading.Tasks;
 using VIToACS.Interfaces;
 
 namespace VIToACS
@@ -51,7 +49,7 @@ namespace VIToACS
                         _azureSearchService.UploadThumbnailDocuments(parsedDocument.Thumbnails);
                         _logger.Debug($"The thumbnails from the file { parsedDocument.FileName } have been parsed and uploaded.");
                     }
-                    
+
                 }
             }
 

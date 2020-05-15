@@ -1,5 +1,4 @@
-﻿using Azure;
-using Azure.Storage.Blobs;
+﻿using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using log4net;
 using System;
@@ -20,23 +19,30 @@ namespace VIToACS.Services
         private readonly ReaderConfig _config;
         private readonly ILog _logger;
         private readonly BlobServiceClient _blobServiceClient;
-        private readonly BlobContainerClient _containerClient;
+        private readonly BlobContainerClient _insightsContainerClient;
+        private readonly BlobContainerClient _failedInsightsContainerClient;
+
 
         public AzureBlobInsightsReaderService(ReaderConfig config, ILog logger)
         {
             if (config == null || logger == null)
+            {
                 throw new NullReferenceException();
+            }
+
             _config = config;
             _logger = logger;
             _blobServiceClient = new BlobServiceClient(_config.AzureBlob.ConnectionString);
-            _containerClient = _blobServiceClient.GetBlobContainerClient(_config.AzureBlob.InsightsContainer);
-            _containerClient.CreateIfNotExists();
+            _insightsContainerClient = _blobServiceClient.GetBlobContainerClient(_config.AzureBlob.InsightsContainer);
+            _insightsContainerClient.CreateIfNotExists();
+            _failedInsightsContainerClient = _blobServiceClient.GetBlobContainerClient(_config.AzureBlob.FailedInsightsContainer);
+            _failedInsightsContainerClient.CreateIfNotExists();
         }
 
         public IEnumerable<ParsedDocument> ReadInsightsFiles()
         {
 
-            foreach (BlobItem blobItem in _containerClient.GetBlobs())
+            foreach (BlobItem blobItem in _insightsContainerClient.GetBlobs())
             {
                 string scenesJson = string.Empty;
                 string thumbnailsJson = string.Empty;
@@ -50,6 +56,11 @@ namespace VIToACS.Services
                 if (scenes == null)
                 {
                     _logger.Warn($"It was not possible to extract the scenes from the file { file }.");
+                    // Upload failed blob to the failed insights container
+                    BlobClient blobClient = _failedInsightsContainerClient.GetBlobClient(file);
+                    using FileStream uploadFileStream = File.OpenRead(downloadFilePath);
+                    blobClient.Upload(uploadFileStream, true);
+                    uploadFileStream.Close();
                 }
                 else
                 {
@@ -61,6 +72,11 @@ namespace VIToACS.Services
                 if (thumbnails == null)
                 {
                     _logger.Warn($"It was not possible to thumbnails the scenes from the file { file }.");
+                    // Upload failed blob to the failed insights container
+                    BlobClient blobClient = _failedInsightsContainerClient.GetBlobClient(file);
+                    using FileStream uploadFileStream = File.OpenRead(downloadFilePath);
+                    blobClient.Upload(uploadFileStream, true);
+                    uploadFileStream.Close();
                 }
                 else
                 {
@@ -70,9 +86,10 @@ namespace VIToACS.Services
 
                 File.Delete(downloadFilePath);
 
-                yield return new ParsedDocument { 
-                    FileName = file, 
-                    ParsedScenesJson = scenesJson, 
+                yield return new ParsedDocument
+                {
+                    FileName = file,
+                    ParsedScenesJson = scenesJson,
                     ParsedThumbnailsJson = thumbnailsJson,
                     Scenes = scenes,
                     Thumbnails = thumbnails
@@ -95,6 +112,7 @@ namespace VIToACS.Services
             catch (FileNotFoundException)
             {
                 _logger.Error($"File {fileName} was not found.");
+                return null;
             }
             catch (JsonException)
             {
@@ -104,7 +122,7 @@ namespace VIToACS.Services
             catch (Exception ex)
             {
                 _logger.Error(ex.Message);
-                throw;
+                return null;
             }
             return scenes;
         }
@@ -122,11 +140,12 @@ namespace VIToACS.Services
                     var doc = JsonDocument.Parse(sr.ReadToEnd());
                     thumbnails = ThumbnailsParser.GetThumbnails(doc);
                 }
-                
+
             }
             catch (FileNotFoundException)
             {
                 _logger.Error($"File {fileName} was not found.");
+                return null;
             }
             catch (JsonException)
             {
@@ -136,7 +155,7 @@ namespace VIToACS.Services
             catch (Exception ex)
             {
                 _logger.Error(ex.Message);
-                throw;
+                return null;
             }
             return thumbnails;
         }
@@ -155,7 +174,7 @@ namespace VIToACS.Services
             string downloadFilePath = Path.Combine(downloadPath, downloadFileName);
 
             // Get a reference to a blob
-            BlobClient blobClient = _containerClient.GetBlobClient(fileName);
+            BlobClient blobClient = _insightsContainerClient.GetBlobClient(fileName);
 
             _logger.Info($"Downloading blob { fileName } to { downloadFilePath }");
 

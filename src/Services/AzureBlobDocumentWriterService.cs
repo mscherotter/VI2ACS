@@ -36,7 +36,7 @@ namespace VIToACS.Services
 
             try
             {
-                var newPath = WriteFile(_config.AzureBlob.TempUploadFilePath, content, newFilename);
+                var newPath = Common.WriteFile(_config.AzureBlob.TempUploadFilePath, content, newFilename);
 
                 // Get a reference to a blob
                 BlobClient blobClient = _scenesContainerClient.GetBlobClient(newFilename);
@@ -64,7 +64,7 @@ namespace VIToACS.Services
             
             try
             {
-                var newPath = WriteFile(_config.AzureBlob.TempUploadFilePath, content, newFilename);
+                var newPath = Common.WriteFile(_config.AzureBlob.TempUploadFilePath, content, newFilename);
 
                 // Get a reference to a blob
                 BlobClient blobClient = _thumbnailsContainerClient.GetBlobClient(newFilename);
@@ -83,23 +83,6 @@ namespace VIToACS.Services
                 _logger.Error(ex.Message);
                 throw;
             }
-        }
-
-        private static string WriteFile(string path, string content, string newFilename)
-        {
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
-            FileStream outputStream;
-            StreamWriter writer;
-            var newPath = Path.Combine(path, newFilename);
-            outputStream = new FileStream(newPath, FileMode.Create, FileAccess.Write);
-            using (writer = new StreamWriter(outputStream))
-            {
-                writer.Write(content);
-            }
-            return newPath;
         }
     }
 }

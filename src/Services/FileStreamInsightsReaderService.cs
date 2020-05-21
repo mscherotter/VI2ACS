@@ -28,6 +28,12 @@ namespace VIToACS.Services
             _logger = logger;
         }
 
+        public void AddNewFile(string fileName, string content)
+        {
+            _logger.Info($"Writing the file { fileName }.");
+            Common.WriteFile(_config.FileStream.InsightsPath, content, fileName);
+        }
+
         public IEnumerable<ParsedDocument> ReadInsightsFiles()
         {
             foreach (string file in Directory.EnumerateFiles(_config.FileStream.InsightsPath, "*.json"))

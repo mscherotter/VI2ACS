@@ -1,4 +1,5 @@
-﻿using Azure.Storage.Blobs;
+﻿using Azure;
+using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using log4net;
 using System;
@@ -19,7 +20,7 @@ namespace VIToACS.Services
         private readonly ReaderConfig _config;
         private readonly ILog _logger;
         private readonly BlobServiceClient _blobServiceClient;
-        private readonly BlobContainerClient _insightsContainerClient;
+        private BlobContainerClient _insightsContainerClient;
         private readonly BlobContainerClient _failedInsightsContainerClient;
 
 
@@ -37,6 +38,33 @@ namespace VIToACS.Services
             _insightsContainerClient.CreateIfNotExists();
             _failedInsightsContainerClient = _blobServiceClient.GetBlobContainerClient(_config.AzureBlob.FailedInsightsContainer);
             _failedInsightsContainerClient.CreateIfNotExists();
+        }
+
+        public void AddNewFile(string fileName, string content)
+        {
+            _logger.Info($"Adding the file { fileName }.");
+
+            try
+            {
+                var newPath = Common.WriteFile(_config.AzureBlob.TempDownloadFilePath, content, fileName);
+
+                // Get a reference to a blob
+                BlobClient blobClient = _insightsContainerClient.GetBlobClient(fileName);
+                using FileStream uploadFileStream = File.OpenRead(newPath);
+                blobClient.Upload(uploadFileStream, true);
+                uploadFileStream.Close();
+                File.Delete(newPath);
+            }
+            catch (FileNotFoundException ex)
+            {
+                _logger.Error(ex.Message);
+                throw;
+            }
+            catch (RequestFailedException ex)
+            {
+                _logger.Error(ex.Message);
+                throw;
+            }
         }
 
         public IEnumerable<ParsedDocument> ReadInsightsFiles()

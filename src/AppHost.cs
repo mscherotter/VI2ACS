@@ -5,13 +5,15 @@ namespace VIToACS
 {
     public class AppHost
     {
+        private readonly IVideoIndexer _videoIndexerService;
         private readonly IAzureSearch _azureSearchService;
         private readonly IInsightsReader _insightsReaderService;
         private readonly IDocumentWriter _documentWriterService;
         private readonly ILog _logger;
 
-        public AppHost(IAzureSearch azureSearchService, IInsightsReader insightsReaderService, IDocumentWriter documentWriterService, ILog logger)
+        public AppHost(IVideoIndexer videoIndexerService, IAzureSearch azureSearchService, IInsightsReader insightsReaderService, IDocumentWriter documentWriterService, ILog logger)
         {
+            _videoIndexerService = videoIndexerService;
             _azureSearchService = azureSearchService;
             _insightsReaderService = insightsReaderService;
             _documentWriterService = documentWriterService;
@@ -21,6 +23,39 @@ namespace VIToACS
         public void Run()
         {
             _logger.Info("Starting the Application.");
+
+
+            _logger.Info("Reading Insights from Video Indexer.");
+
+
+            var done = false;
+            var skip = 0;
+            while (!done)
+            {
+                var mediaAssets = _videoIndexerService.ListVideosAsync(skip).GetAwaiter().GetResult();
+                if (mediaAssets != null)
+                {
+                    if (mediaAssets.Results != null)
+                    {
+                        foreach (var media in mediaAssets.Results)
+                        {
+                            _logger.Debug($"Reading and saving insights from the Video: { media.Name } with the Id: { media.Id }.");
+                            _videoIndexerService.SaveIndexAsync(_insightsReaderService, media);
+                        }
+                        done = mediaAssets.NextPage.Done;
+                        skip = mediaAssets.NextPage.Skip;
+                    }
+                    else
+                    {
+                        done = true;
+                    }
+                }
+                else
+                {
+                    done = true;
+                }
+            }
+
 
             _logger.Info("Creating the Scene Index.");
             _azureSearchService.CreateSceneIndex();

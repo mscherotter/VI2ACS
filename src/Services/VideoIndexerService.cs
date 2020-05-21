@@ -109,6 +109,11 @@ namespace VIToACS.Services
 
         private async Task<string> GetAccountAccessTokenAsync()
         {
+            if (!string.IsNullOrEmpty(_config.AccessToken))
+            {
+                return _config.AccessToken;
+            }
+
             // Check to see if we can reuse the cached access token
             if ((DateTime.UtcNow - _accountAccessTokenTimeStamp).TotalMinutes > 55)
             {

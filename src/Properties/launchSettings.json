@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "VIToACS": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Projects\\Randa\\VI2ACS\\src\\SampleFiles\\SeahawksPeteCarrollSatyaNadella.json"
+    }
+  }
+}

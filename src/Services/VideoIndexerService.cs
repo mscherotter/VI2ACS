@@ -31,7 +31,7 @@ namespace VIToACS.Services
 
         public VideoIndexerService(VideoIndexerConfig config, ReaderConfig readerConfig, ILog logger)
         {
-            if (config == null || logger == null)
+            if (config == null || readerConfig == null || logger == null)
                 throw new NullReferenceException();
             _config = config;
             _readerConfig = readerConfig;

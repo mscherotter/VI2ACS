@@ -161,7 +161,7 @@ namespace VIToACS.Services
                 .Replace("%", "_")
                 .ToLower();
 
-            return $"{ newName.Substring(1, ( newName.Length > maxSize ? maxSize : newName.Length - 1)) }_{ media.Id.ToLower() }.json";
+            return $"{ newName.Substring(0, ( newName.Length > maxSize ? maxSize : newName.Length - 1)) }_{ media.Id.ToLower() }.json";
         }
     }
 }

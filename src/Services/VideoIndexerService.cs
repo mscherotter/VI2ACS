@@ -88,10 +88,15 @@ namespace VIToACS.Services
 
                     // Get the results in JSON format
                     var listVideosRequestResult = client.GetAsync($"{_apiUrl}/{_config.Location}/Accounts/{_config.AccountId}/Videos?pageSize={_config.PageSize}&skip={skip}&accessToken={accessToken}").Result;
-                    var listVideostJson = listVideosRequestResult.Content.ReadAsStringAsync().Result;
+                    var listVideosJson = listVideosRequestResult.Content.ReadAsStringAsync().Result;
+
+                    if (listVideosJson.Contains("ACCESS_TOKEN_VALIDATION_FAILED"))
+                    {
+                        _logger.Error($"Invalid access token!");
+                    }
 
                     // Parse and return the results
-                    var results = JsonConvert.DeserializeObject<MediaAssetResults>(listVideostJson);
+                    var results = JsonConvert.DeserializeObject<MediaAssetResults>(listVideosJson);
                     return results;
                 }
                 catch (HttpRequestException ex)

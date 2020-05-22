@@ -23,37 +23,39 @@ namespace VIToACS
         public void Run()
         {
             _logger.Info("Starting the Application.");
-            
 
-            // List the videos from Video Library and extract the insights file
-            // The new file is add to a location known by the reader service
-            _logger.Info("Reading videos from Video Indexer library.");
-            var done = false;
-            var skip = 0;
-            while (!done)
+            if (_videoIndexerService.IsEnabled())
             {
-                var mediaAssets = _videoIndexerService.ListVideosAsync(skip).GetAwaiter().GetResult();
-                if (mediaAssets != null)
+                // List the videos from Video Library and extract the insights file
+                // The new file is add to a location known by the reader service
+                _logger.Info("Reading videos from Video Indexer library.");
+                var done = false;
+                var skip = 0;
+                while (!done)
                 {
-                    if (mediaAssets.Results != null)
+                    var mediaAssets = _videoIndexerService.ListVideosAsync(skip).GetAwaiter().GetResult();
+                    if (mediaAssets != null)
                     {
-                        foreach (var media in mediaAssets.Results)
+                        if (mediaAssets.Results != null)
                         {
-                            _logger.Debug($"Reading and saving insights from the Video: { media.Name } with the Id: { media.Id }.");
-                            // Add a new file to a location know by the reader service
-                            _videoIndexerService.AddNewInsightsFileToReaderAsync(_insightsReaderService, media);
+                            foreach (var media in mediaAssets.Results)
+                            {
+                                _logger.Debug($"Reading and saving insights from the Video: { media.Name } with the Id: { media.Id }.");
+                                // Add a new file to a location know by the reader service
+                                _videoIndexerService.AddNewInsightsFileToReaderAsync(_insightsReaderService, media);
+                            }
+                            done = mediaAssets.NextPage.Done;
+                            skip = mediaAssets.NextPage.Skip;
                         }
-                        done = mediaAssets.NextPage.Done;
-                        skip = mediaAssets.NextPage.Skip;
+                        else
+                        {
+                            done = true;
+                        }
                     }
                     else
                     {
                         done = true;
                     }
-                }
-                else
-                {
-                    done = true;
                 }
             }
 

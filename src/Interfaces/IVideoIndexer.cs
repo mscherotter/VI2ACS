@@ -9,6 +9,7 @@ namespace VIToACS.Interfaces
     public interface IVideoIndexer
     {
         Task AddNewInsightsFileToReaderAsync(IInsightsReader reader, MediaAsset media);
+        bool IsEnabled();
         Task<MediaAssetResults> ListVideosAsync(int skip);
     }
 }

@@ -70,6 +70,11 @@ namespace VIToACS.Services
             }
         }
 
+        public bool IsEnabled()
+        {
+            return _config.Enabled;
+        }
+
         public async Task<MediaAssetResults> ListVideosAsync(int skip)
         {
             // Get an access token and create the client

@@ -162,6 +162,8 @@ Set up the credentials to connect to Azure Video Indexer service. To find the ke
 "downloadThumbnails": true    
 ```
 
+> An ```accessToken``` can be generated using the [Video Indexer Developer Portal](https://api-portal.videoindexer.ai/) under [Get Account Access Token](https://api-portal.videoindexer.ai/docs/services/Operations/operations/Get-Account-Access-Token/console).
+
 > If the ```accessToken``` is not provided the application will try to create a read-only token using the ```subscriptionKey```.
 
 If a paid account will be used then replace ```location``` with the region for the account.

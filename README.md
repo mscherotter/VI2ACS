@@ -3,21 +3,21 @@ Created by Michael S. Scherotter, Kelsey Huebner and Marcel Aldecoa
 
 This code parses [Azure Video Indexer](https://www.videoindexer.ai/) insights data into scene and thumbnail documents, storing in [Azure Blob Storage](https://azure.microsoft.com/en-us/services/storage/blobs/) or local storage. The documents are converted to [Azure Cognitive Search](https://azure.microsoft.com/en-us/services/cognitive-services/) scene and thumbnail indices.
 
-## Scene Index
+## Search Components
+### Scene Index
 The **sceneindex** lets you create queries for scenes that have certain metadata, including transcript, faces, emotions, sentiment, labels, and audio effects.  There should be one document for each scene in each video.
 
 ### Query Syntax
 - Search for scenes that have a specific person: _$count=true&$filter=faces/any(face: face/name eq 'John Doe')&$select=start,end_
 - Search for scenes that have a refrigerator in them: _$count=true&$filter=labels/any(name: label/name eq 'refrigerator')&$select=start,end_
 
-## Thumbnail Index
+### Thumbnail Index
 The **thumbnailindex** lets you create queries for keyframe thumbnails that have been extracted by video indexer that have certain metadata including faces, labels, OCR, keywords, and shot tags.  There should be one thumbnail document for each keyframe in each video.
 
-
-## Using the code
+## The code
 The Console app (Program.cs) is the main entry point. It will read the configuration section of appsettings.json and inject an instance of Services
 
-## Services
+### Models
 Services contain the app logic for:
 - Azure Blob Reader
 - Azure Blob Writer
@@ -26,7 +26,16 @@ Services contain the app logic for:
 - FileStream Reader
 - FileStream Writer
 
-## Factories
+### Services
+Services contain the app logic for:
+- Azure Blob Reader
+- Azure Blob Writer
+- Azure Cognitive Search
+- Azure Video Indexer
+- FileStream Reader
+- FileStream Writer
+
+### Factories
 Create as factory -- for example: read/write will instantiate a class based on the type (blob or filestream)
 
 ## Configuring appsettings.json
@@ -96,12 +105,15 @@ Optionally ```pageSize```can be changed depending on the amount of videos indexe
 The flags ```downloadInsights``` and ```downloadThumbnails``` control whether the application will download insights files and thumbnails from [Azure Video Indexer](https://www.videoindexer.ai/)
 
 ## Running the App
+- Clone the repository
 - Set up credentials in the ```appsettings.json``` file
-- Open the VIToACS Solution in Visual Studio
-- Build the solution
-- Run the solution
-a.	Output will be in the console window logging each step
-Logger Config
-LOG4NET.CONFIG is logger config
- 
-Bin-Debug-> main.log
+- Run
+
+```
+cd src/
+dotnet build -v q
+dotnet run
+```
+
+## Logger Config
+The configuration for logging can be found in the found ```log4net.config```

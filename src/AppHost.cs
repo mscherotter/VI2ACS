@@ -95,7 +95,7 @@ namespace VIToACS
                             foreach (var thumbnail in parsedDocument.Thumbnails)
                             {
                                 _videoIndexerService.DownloadThumbnailAsync(_documentWriterService,
-                                    $"thumbnail_{ Path.GetFileNameWithoutExtension(parsedDocument.FileName) }_{ thumbnail.Video.Id }_{ thumbnail.Id }.jpeg",
+                                    $"thumbnail_{ Path.GetFileNameWithoutExtension(parsedDocument.FileName) }_{ thumbnail.Id }.jpeg",
                                     thumbnail.Video.Id,
                                     thumbnail.Id);
                             }

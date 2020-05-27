@@ -6,9 +6,10 @@ namespace VIToACS.Models
     public class Playlist
     {
 
-        [IsFilterable]
+        [IsSearchable, IsFilterable]
         public string Name { get; set; }
 
+        [IsSearchable]
         public string Description { get; set; }
 
         [IsFilterable, IsFacetable]
@@ -38,7 +39,6 @@ namespace VIToACS.Models
         [IsFilterable, IsFacetable]
         public bool IsBase { get; set; }
 
-        [IsFilterable]
         public double DurationInSeconds { get; set; }
     }
 }

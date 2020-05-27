@@ -9,7 +9,7 @@ namespace VIToACS.Models
         [IsSearchable, IsFilterable, IsFacetable]
         public string Name { get; set; }
 
-        [IsFacetable]
+        [IsFacetable, IsFilterable]
         public string KnownPersonId { get; set; }
 
         public double Start { get; set; }

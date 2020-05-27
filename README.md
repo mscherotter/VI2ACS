@@ -161,7 +161,7 @@ The flags ```downloadInsights``` and ```downloadThumbnails``` control whether th
 
 ## Running the App
 - Clone the repository
-- Set up credentials in the ```appsettings.json``` file
+- Set up credentials and update the configuration/options in the ```appsettings.json``` file
 - Run the commands
 
 ```

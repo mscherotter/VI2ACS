@@ -11,8 +11,8 @@ The **sceneindex** allows the creation of queries for scenes that have certain m
 The **thumbnailindex** allows the creation ofqueries for keyframe thumbnails that have been extracted by video indexer that have certain metadata including faces, labels, OCR, keywords, and shot tags.  There should be one thumbnail document for each keyframe in each video.
 
 ### Query Syntax
-- Search for scenes that have a specific person: _$count=true&$filter=faces/any(face: face/name eq 'John Doe')&$select=start,end_
-- Search for scenes that have a refrigerator in them: _$count=true&$filter=labels/any(name: label/name eq 'refrigerator')&$select=start,end_
+- Search for scenes that have a specific person: ```$count=true&$filter=faces/any(face: face/name eq 'John Doe')&$select=start,end```
+- Search for scenes that have a refrigerator in them: ```$count=true&$filter=labels/any(name: label/name eq 'refrigerator')&$select=start,end```
 
 ## The code
 The main entry point for the application is ```Program.cs```. It will read the configuration section of ```appsettings.json``` and create an instance of each service according to the type: **FileStream** or **AzureBlob**. The ```AppHost.cs``` has the main logic inside the method ```Run()```.
@@ -106,7 +106,7 @@ If using blob storage, add the [connection string](https://docs.microsoft.com/en
 
 The ```type``` can be either **FileStream** or **AzureBlob**.
 ```json
-"type": "AzureBlob",
+"type": "AzureBlob"
 ```
 
 If using **FileStream**, add a local folder path.
@@ -127,7 +127,7 @@ If using blob storage, add the [connection string](https://docs.microsoft.com/en
 
 The ```type``` can be either **FileStream** or **AzureBlob**.
 ```json
-"type": "AzureBlob",
+"type": "AzureBlob"
 ```
 
 If using **FileStream**, add a local folder path.
@@ -143,22 +143,23 @@ Set up the credentials to connect to the [Azure Cognitive Search](https://azure.
 ```json
 "name": "{search service name}",
 "adminKey": "{admin key}",
-"deleteIndexIfExists": false
+"deleteIndexIfExists": false,
 ```
-> optionally ```deleteIndexIfExists```can be ```true``` if the index will be re-create each time the code runs.
+
+> Optionally ```deleteIndexIfExists```can be ```true``` if the index will be re-create each time the code runs.
 
 ### videoIndexer
 
 Set up the credentials to connect to Azure Video Indexer service. To find the keys, follow guidelines here: https://docs.microsoft.com/en-us/azure/media-services/video-indexer/video-indexer-use-apis.
 
 ```json
-    "location": "trial", 
-    "accountId": "{account id}",
-    "subscriptionKey": "{subscription key}",
-    "accessToken": "{accessToken}",
-    "pageSize": 25,
-    "downloadInsights": true,
-    "downloadThumbnails": true    
+"location": "trial", 
+"accountId": "{account id}",
+"subscriptionKey": "{subscription key}",
+"accessToken": "{accessToken}",
+"pageSize": 25,
+"downloadInsights": true,
+"downloadThumbnails": true    
 ```
 
 > If the ```accessToken``` is not provided the application will try to create a read-only token using the ```subscriptionKey```.
@@ -171,8 +172,8 @@ The flags ```downloadInsights``` and ```downloadThumbnails``` control whether th
 
 ## Running the App
 - Clone the repository.
-- Set up credentials and update the configuration/options in the ```appsettings.json``` file.
-- Run the commands...
+- Set up credentials and update the configurations/options in the ```appsettings.json``` file.
+- Run the commands:
 
 ```
 cd src/

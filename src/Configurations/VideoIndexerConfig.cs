@@ -8,7 +8,8 @@ namespace VIToACS.Configurations
     {
         public string AccessToken { get; set; }
         public string AccountId { get; set; }
-        public bool Enabled { get; set; }
+        public bool DownloadInsights { get; set; }
+        public bool DownloadThumbnails { get; set; }
         public string Location { get; set; }
         public int PageSize { get; set; }
         public string SubscriptionKey { get; set; }

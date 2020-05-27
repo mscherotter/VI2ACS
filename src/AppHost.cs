@@ -1,4 +1,5 @@
 ﻿using log4net;
+using System.IO;
 using VIToACS.Interfaces;
 
 namespace VIToACS
@@ -24,7 +25,7 @@ namespace VIToACS
         {
             _logger.Info("Starting the Application.");
 
-            if (_videoIndexerService.IsEnabled())
+            if (_videoIndexerService.IsDownloadInsightsEnabled())
             {
                 // List the videos from Video Library and extract the insights file
                 // The new file is add to a location known by the reader service
@@ -88,6 +89,17 @@ namespace VIToACS
                         _logger.Info($"Uploading thumbnails from the file { parsedDocument.FileName } to Azure Cognitive Search.");
                         _azureSearchService.UploadThumbnailDocuments(parsedDocument.Thumbnails);
                         _logger.Debug($"The thumbnails from the file { parsedDocument.FileName } have been parsed and uploaded.");
+
+                        if (_videoIndexerService.IsDownloadThumbnailsEnabled())
+                        {
+                            foreach (var thumbnail in parsedDocument.Thumbnails)
+                            {
+                                _videoIndexerService.DownloadThumbnailAsync(_documentWriterService,
+                                    $"thumbnail_{ Path.GetFileNameWithoutExtension(parsedDocument.FileName) }_{ thumbnail.Video.Id }_{ thumbnail.Id }.jpeg",
+                                    thumbnail.Video.Id,
+                                    thumbnail.Id);
+                            }
+                        }
                     }
                 }
             }

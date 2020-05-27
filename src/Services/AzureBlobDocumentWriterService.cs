@@ -84,5 +84,34 @@ namespace VIToACS.Services
                 throw;
             }
         }
+
+        public void WriteThumbnailImage(string fileName, byte[] bytes)
+        {
+            var newFilename = _config.ThumbnailsDocumentPrefix + Path.GetFileName(fileName);
+            _logger.Info($"Writing the file { newFilename }.");
+
+            try
+            {
+                var newPath = Common.WriteFile(_config.FileStream.ThumbnailsPath, bytes, newFilename);
+
+                // Get a reference to a blob
+                BlobClient blobClient = _thumbnailsContainerClient.GetBlobClient(newFilename);
+                using FileStream uploadFileStream = File.OpenRead(newPath);
+                blobClient.Upload(uploadFileStream, true);
+                uploadFileStream.Close();
+                File.Delete(newPath);
+            }
+            catch (FileNotFoundException ex)
+            {
+                _logger.Error(ex.Message);
+                throw;
+            }
+            catch (RequestFailedException ex)
+            {
+                _logger.Error(ex.Message);
+                throw;
+            }
+
+        }
     }
 }

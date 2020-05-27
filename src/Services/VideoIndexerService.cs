@@ -70,9 +70,14 @@ namespace VIToACS.Services
             }
         }
 
-        public bool IsEnabled()
+        public bool IsDownloadInsightsEnabled()
         {
-            return _config.Enabled;
+            return _config.DownloadInsights;
+        }
+
+        public bool IsDownloadThumbnailsEnabled()
+        {
+            return _config.DownloadThumbnails;
         }
 
         public async Task<MediaAssetResults> ListVideosAsync(int skip)
@@ -114,6 +119,44 @@ namespace VIToACS.Services
             {
                 _logger.Error($"Invalid access token for the account { _config.AccountId }.");
                 return null;
+            }
+        }
+
+        public async Task DownloadThumbnailAsync(IDocumentWriter writer, string fileName, string videoId, string thumbnailId)
+        {
+            // Get an access token and create the client
+            var accessToken = await GetAccountAccessTokenAsync();
+
+            if (!string.IsNullOrEmpty(accessToken))
+            {
+                try
+                {
+                    var client = GetHttpClient();
+
+                    var response = client.GetAsync($"{_apiUrl}/{_config.Location}/Accounts/{_config.AccountId}/Videos/{videoId}/Thumbnails/{thumbnailId}?format=Jpeg&accessToken={accessToken}").Result;
+
+                    if (response.Content.ReadAsStringAsync().Result.Contains("ACCESS_TOKEN_VALIDATION_FAILED"))
+                    {
+                        _logger.Error($"Invalid access token!");
+                    }
+
+                    var bytes = response.Content.ReadAsByteArrayAsync().Result;
+
+                    writer.WriteThumbnailImage(fileName, bytes);
+
+                }
+                catch (HttpRequestException ex)
+                {
+                    _logger.Error($"Error downloading the thumbnail { thumbnailId }. File { fileName }. Message: { ex.Message }");
+                }
+                catch (Exception ex)
+                {
+                    _logger.Error(ex.Message);
+                }
+            }
+            else
+            {
+                _logger.Error($"Invalid access token for the account { _config.AccountId }.");
             }
         }
 

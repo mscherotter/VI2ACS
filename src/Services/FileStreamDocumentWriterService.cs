@@ -32,5 +32,12 @@ namespace VIToACS.Services
             _logger.Info($"Writing the file { newFilename }.");
             Common.WriteFile(_config.FileStream.ThumbnailsPath, content, newFilename);
         }
+
+        public void WriteThumbnailImage(string fileName, byte[] bytes)
+        {
+            var newFilename = Path.GetFileName(fileName);
+            _logger.Info($"Writing the file { newFilename }.");
+            Common.WriteFile(_config.FileStream.ThumbnailsPath, bytes, newFilename);
+        }
     }
 }

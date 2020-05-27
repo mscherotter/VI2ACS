@@ -87,12 +87,12 @@ namespace VIToACS.Services
 
         public void WriteThumbnailImage(string fileName, byte[] bytes)
         {
-            var newFilename = _config.ThumbnailsDocumentPrefix + Path.GetFileName(fileName);
+            var newFilename = Path.GetFileName(fileName);
             _logger.Info($"Writing the file { newFilename }.");
 
             try
             {
-                var newPath = Common.WriteFile(_config.FileStream.ThumbnailsPath, bytes, newFilename);
+                var newPath = Common.WriteFile(_config.AzureBlob.TempUploadFilePath, bytes, newFilename);
 
                 // Get a reference to a blob
                 BlobClient blobClient = _thumbnailsContainerClient.GetBlobClient(newFilename);

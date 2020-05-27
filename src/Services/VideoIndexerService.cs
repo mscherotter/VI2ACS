@@ -36,6 +36,12 @@ namespace VIToACS.Services
             _config = config;
             _readerConfig = readerConfig;
             _logger = logger;
+
+            if (string.IsNullOrEmpty(_config.AccessToken))
+            {
+                _accountAccessToken = GetAccountAccessTokenAsync().GetAwaiter().GetResult();
+                _accountAccessTokenTimeStamp = DateTime.UtcNow;
+            }
         }
 
         public async Task AddNewInsightsFileToReaderAsync(IInsightsReader reader, MediaAsset media)
@@ -165,10 +171,6 @@ namespace VIToACS.Services
             if (!string.IsNullOrEmpty(_config.AccessToken))
             {
                 return _config.AccessToken;
-            }
-            if (!string.IsNullOrEmpty(_accountAccessToken))
-            {
-                return _accountAccessToken;
             }
 
             // Check to see if we can reuse the cached access token

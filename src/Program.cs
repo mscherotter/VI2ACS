@@ -24,7 +24,7 @@ namespace VIToACS
 
             var config = builder.Build();
             var azureSearchConfig = config.GetSection("azureSearch").Get<AzureSearchConfig>();
-            var videoIndexConfig = config.GetSection("videoindexer").Get<VideoIndexerConfig>();
+            var videoIndexConfig = config.GetSection("videoIndexer").Get<VideoIndexerConfig>();
             var readerConfig = config.GetSection("reader").Get<ReaderConfig>();
             var writerConfig = config.GetSection("writer").Get<WriterConfig>();
             var logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);

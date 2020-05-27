@@ -24,7 +24,7 @@ namespace VIToACS.Services
         private const bool _allowEdit = false;
 
         // Cached access token
-        private string _accountAccessToken;
+        private static string _accountAccessToken;
 
         // Timeout for cached access token
         private DateTime _accountAccessTokenTimeStamp;
@@ -165,6 +165,10 @@ namespace VIToACS.Services
             if (!string.IsNullOrEmpty(_config.AccessToken))
             {
                 return _config.AccessToken;
+            }
+            if (!string.IsNullOrEmpty(_accountAccessToken))
+            {
+                return _accountAccessToken;
             }
 
             // Check to see if we can reuse the cached access token

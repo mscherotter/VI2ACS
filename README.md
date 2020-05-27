@@ -150,7 +150,7 @@ Set up the credentials to connect to the [Azure Cognitive Search](https://azure.
 
 ### videoIndexer
 
-Set up the credentials to connect to Azure Video Indexer service. To find the keys, follow guidelines here: https://docs.microsoft.com/en-us/azure/media-services/video-indexer/video-indexer-use-apis.
+Set up the credentials to connect to Azure Video Indexer service. To find the keys, follow guidelines here: [Tutorial: Use the Video Indexer API](https://docs.microsoft.com/en-us/azure/media-services/video-indexer/video-indexer-use-apis).
 
 ```json
 "location": "trial", 

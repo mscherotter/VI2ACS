@@ -7,36 +7,92 @@ This code parses [Azure Video Indexer](https://www.videoindexer.ai/) insights da
 ### Scene Index
 The **sceneindex** lets you create queries for scenes that have certain metadata, including transcript, faces, emotions, sentiment, labels, and audio effects.  There should be one document for each scene in each video.
 
+### Thumbnail Index
+The **thumbnailindex** lets you create queries for keyframe thumbnails that have been extracted by video indexer that have certain metadata including faces, labels, OCR, keywords, and shot tags.  There should be one thumbnail document for each keyframe in each video.
+
 ### Query Syntax
 - Search for scenes that have a specific person: _$count=true&$filter=faces/any(face: face/name eq 'John Doe')&$select=start,end_
 - Search for scenes that have a refrigerator in them: _$count=true&$filter=labels/any(name: label/name eq 'refrigerator')&$select=start,end_
 
-### Thumbnail Index
-The **thumbnailindex** lets you create queries for keyframe thumbnails that have been extracted by video indexer that have certain metadata including faces, labels, OCR, keywords, and shot tags.  There should be one thumbnail document for each keyframe in each video.
-
 ## The code
-The Console app (Program.cs) is the main entry point. It will read the configuration section of appsettings.json and inject an instance of Services
-
-### Models
-Services contain the app logic for:
-- Azure Blob Reader
-- Azure Blob Writer
-- Azure Cognitive Search
-- Azure Video Indexer
-- FileStream Reader
-- FileStream Writer
+The main entry point for the application is ```Program.cs```. It will read the configuration section of appsettings.json and create an instance of each service according to the type: **FileStream** or **AzureBlob**.
 
 ### Services
 Services contain the app logic for:
 - Azure Blob Reader
 - Azure Blob Writer
-- Azure Cognitive Search
-- Azure Video Indexer
 - FileStream Reader
 - FileStream Writer
+- Azure Cognitive Search
+- Azure Video Indexer
 
-### Factories
-Create as factory -- for example: read/write will instantiate a class based on the type (blob or filestream)
+### Models
+
+The two (2) main classes that represent both scenes and thumbnails are ```Scene``` and ```Thumbnail``` respectively. These are the classes that could be extended to augment the data that will be used for the search, by adding new properties/entities according to the business requirement.
+
+
+> Scene class
+```csharp
+public class Scene
+{
+    [System.ComponentModel.DataAnnotations.Key]
+    public string Id { get; set; }
+
+    public double Start { get; set; }
+
+    public double End { get; set; }
+
+    public List<Shot> Shots { get; set; }
+
+    public Video Video { get; set; }
+
+    public List<Transcript> Transcript { get; set; }
+
+    public List<Face> Faces { get; set; }
+
+    public List<Emotion> Emotions { get; set; }
+
+    public List<Sentiment> Sentiments { get; set; }
+
+    public List<Label> Labels { get; set; }
+
+    public List<AudioEffect> AudioEffects { get; set; }
+
+    public Playlist Playlist { get; set; }
+
+}
+```
+> Thumbnail class
+```csharp
+public class Thumbnail
+{
+    [System.ComponentModel.DataAnnotations.Key]
+    public string Id { get; set; }
+
+    public Video Video { get; set; }
+
+    public double Start { get; set; }
+
+    public double End { get; set; }
+
+    [IsFacetable]
+    public List<string> Faces { get; set; }
+
+    [IsFacetable]
+    public List<string> Labels { get; set; }
+
+    public List<Ocr> Ocr { get; set; }
+
+    public List<Keyword> Keywords { get; set; }
+
+    [IsFacetable]
+    public List<string> ShotTags { get; set; }
+
+    public List<Topic> Topics { get; set; }
+
+    public Playlist Playlist { get; set; }
+}
+```
 
 ## Configuring appsettings.json
 
@@ -72,7 +128,6 @@ If using FileStream, add your local folder path.
 "thumbnailsPath": "{local file path}"
 ```
 
-
 ### azureSearch
 Set up your credentials to connect to your [Azure Cognitive Search](https://azure.microsoft.com/en-us/services/cognitive-services/) service.
 
@@ -107,7 +162,7 @@ The flags ```downloadInsights``` and ```downloadThumbnails``` control whether th
 ## Running the App
 - Clone the repository
 - Set up credentials in the ```appsettings.json``` file
-- Run
+- Run the commands
 
 ```
 cd src/
@@ -116,4 +171,4 @@ dotnet run
 ```
 
 ## Logger Config
-The configuration for logging can be found in the found ```log4net.config```
+The configuration for logging can be found in the found ```log4net.config```.

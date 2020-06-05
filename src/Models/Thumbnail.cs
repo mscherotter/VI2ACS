@@ -14,10 +14,10 @@ namespace VIToACS.Models
 
         public double End { get; set; }
 
-        [IsFacetable]
+        [IsFacetable, IsFilterable]
         public List<string> Faces { get; set; }
 
-        [IsFacetable]
+        [IsFacetable, IsFilterable]
         public List<string> Labels { get; set; }
 
         public List<Ocr> Ocr { get; set; }

@@ -67,17 +67,14 @@ namespace VIToACS.Parsers
                             return new Ocr
                             {
                                 Text = item.GetProperty("text").GetString(),
-                                Confidence = item.GetProperty("confidence").GetDouble()
+                                Confidence = item.GetProperty("confidence").GetDouble(),
+                                Language = item.GetProperty("language").GetString()
                             };
                         });
 
                         var keywords = Utils.CreateCollection(insights, instance, "keywords", delegate (JsonElement item)
                         {
-                            return new Keyword
-                            {
-                                Text = item.GetProperty("text").GetString(),
-                                Confidence = item.GetProperty("confidence").GetDouble()
-                            };
+                            return Keyword.Create(item);
                         });
 
                         var topics = Utils.CreateCollection(insights, instance, "topics", delegate (JsonElement item)
@@ -106,14 +103,14 @@ namespace VIToACS.Parsers
                             Video = Utils.CreateVideo(video),
                             Start = Utils.GetTimeSpan(instance, "start"),
                             End = Utils.GetTimeSpan(instance, "end"),
-                            Faces = faces.Any() ? faces : null,
-                            Labels = labels.Any() ? labels : null,
-                            Ocr = (ocr != null) ? ocr.ToList() : null,
-                            Keywords = (keywords != null) ? keywords.ToList() : null,
-                            Topics = (topics != null) ? topics.ToList() : null,
+                            Faces = faces,
+                            Labels = labels,
+                            Ocr = ocr?.ToList(),
+                            Keywords = keywords?.ToList(),
+                            Topics = topics?.ToList(),
                             ShotTags = Utils.GetTags(shot),
                             Playlist = Utils.CreatePlaylist(doc.RootElement),
-                            Sentiments = sentiments.Any() ? sentiments.ToList() : null
+                            Sentiments = sentiments?.ToList()
                         });
                     }
                 }

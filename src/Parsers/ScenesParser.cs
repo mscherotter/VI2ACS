@@ -131,21 +131,26 @@ namespace VIToACS.Parsers
                     };
                 });
 
+                var keywords = Utils.GetCollection(insights, "keywords", start, end, delegate (JsonElement instance, JsonElement keyword)
+                {
+                    return Keyword.Create(keyword);
+                });
 
                 scenes.Add(new Scene
                 {
                     Id = $"{videoId}_{sceneId}",
                     Start = start.TotalSeconds,
                     End = end.TotalSeconds,
-                    Shots = shots.ToList(),
+                    Shots = shots?.ToList(),
                     Video = Utils.CreateVideo(video),
-                    Transcript = (transcript != null) ? transcript.ToList() : null,
-                    Faces = (faces != null) ? faces.ToList() : null,
-                    Emotions = (emotions != null) ? emotions.ToList() : null,
-                    Labels = (labels != null) ? labels.ToList() : null,
-                    AudioEffects = (audioEffects != null) ? audioEffects.ToList() : null,
-                    Sentiments = (sentiments != null) ? sentiments.ToList() : null,
-                    Playlist = Utils.CreatePlaylist(doc.RootElement)
+                    Transcript = transcript?.ToList(),
+                    Faces = faces?.ToList(),
+                    Emotions = emotions?.ToList(),
+                    Labels = labels?.ToList(),
+                    AudioEffects = audioEffects?.ToList(),
+                    Sentiments = sentiments?.ToList(),
+                    Playlist = Utils.CreatePlaylist(doc.RootElement),
+                    Keywords = keywords?.ToList()
                 });
 
                 

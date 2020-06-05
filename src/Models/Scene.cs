@@ -29,5 +29,9 @@ namespace VIToACS.Models
 
         public Playlist Playlist { get; set; }
 
+        /// <summary>
+        /// Gets or sets the keywords
+        /// </summary>
+        public List<Keyword> Keywords { get; set; }
     }
 }

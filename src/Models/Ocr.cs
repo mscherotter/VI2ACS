@@ -7,5 +7,11 @@ namespace VIToACS.Models
         [IsSearchable]
         public string Text { get; set; }
         public double Confidence { get; set; }
+
+        /// <summary>
+        /// Gets or sets the language
+        /// </summary>
+        [IsFacetable, IsFilterable]
+        public string Language { get; set; }
     }
 }

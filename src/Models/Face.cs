@@ -1,4 +1,5 @@
 ﻿using Microsoft.Azure.Search;
+using Nest;
 using System.Text.Json;
 using VIToACS.Parsers;
 
@@ -11,7 +12,7 @@ namespace VIToACS.Models
         /// <summary>
         /// Create a new face element in the index
         /// </summary>
-        /// <param name="faceInstance">the instance of a face</param>
+        /// <param name="faceInstance">the instance of a face in videos/insights/faces/instances</param>
         /// <param name="face">the face</param>
         public Face(JsonElement faceInstance, JsonElement face)
         {
@@ -20,6 +21,8 @@ namespace VIToACS.Models
             Start = Utils.GetTimeSpan(faceInstance, "start");
             End = Utils.GetTimeSpan(faceInstance, "end");
             Confidence = face.GetProperty("confidence").GetDouble();
+            
+            ThumbnailId = face.GetProperty("thumbnailId").GetString();
 
             if (face.TryGetProperty("knownPersonId", out JsonElement value2))
             {
@@ -40,6 +43,9 @@ namespace VIToACS.Models
         public double End { get; set; }
 
         public double Confidence { get; set; }
+
+        [IsFilterable]
+        public string ThumbnailId { get; set; }
 
     }
 }

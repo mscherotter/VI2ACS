@@ -187,9 +187,18 @@ namespace VIToACS.Services
                     var accountAccessTokenRequestResult = await
                         client.GetAsync($"{ _apiUrl }/auth/{ _config.Location }/Accounts/{ _config.AccountId }/AccessToken?allowEdit={ _allowEdit }");
 
-                    // Parse the access token
-                    _accountAccessToken = accountAccessTokenRequestResult.Content.ReadAsStringAsync().Result.Replace("\"", "");
-                    _accountAccessTokenTimeStamp = DateTime.UtcNow;
+                    if (accountAccessTokenRequestResult.IsSuccessStatusCode)
+                    {
+                        // Parse the access token
+                        _accountAccessToken = accountAccessTokenRequestResult.Content.ReadAsStringAsync().Result.Replace("\"", "");
+                        _accountAccessTokenTimeStamp = DateTime.UtcNow;
+                    }
+                    else
+                    {
+                        _logger.Error($"Error using access token for video indexer: {accountAccessTokenRequestResult.ReasonPhrase}");
+
+                        return string.Empty;
+                    }
                 }
                 catch(HttpRequestException ex)
                 {

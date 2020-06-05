@@ -19,12 +19,14 @@ namespace VIToACS.Parsers
 
             var videos = doc.RootElement.GetProperty("videos");
             var summarizedInsights = doc.RootElement.GetProperty("summarizedInsights");
-            var allFaces = summarizedInsights.GetProperty("faces").EnumerateArray();
             var thumbnails = new List<Thumbnail>();
 
             foreach (var video in videos.EnumerateArray())
             {
                 var insights = video.GetProperty("insights");
+
+                var allFaces = insights.GetProperty("faces").EnumerateArray();
+
                 foreach (var shot in insights.GetProperty("shots").EnumerateArray())
                 {
                     foreach (var keyFrame in shot.GetProperty("keyFrames").EnumerateArray())
@@ -33,10 +35,10 @@ namespace VIToACS.Parsers
                         var faces = new List<Face>();
                         foreach (var face in allFaces)
                         {
-                            foreach (var appearance in face.GetProperty("appearances").EnumerateArray())
+                            foreach (var appearance in face.GetProperty("instances").EnumerateArray())
                             {
-                                var start = TimeSpan.Parse(appearance.GetProperty("startTime").GetString(), CultureInfo.InvariantCulture);
-                                var end = TimeSpan.Parse(appearance.GetProperty("endTime").GetString(), CultureInfo.InvariantCulture);
+                                var start = TimeSpan.Parse(appearance.GetProperty("start").GetString(), CultureInfo.InvariantCulture);
+                                var end = TimeSpan.Parse(appearance.GetProperty("end").GetString(), CultureInfo.InvariantCulture);
                                 var isin = Utils.IsIn(instance, start, end);
                                 if (isin)
                                 {

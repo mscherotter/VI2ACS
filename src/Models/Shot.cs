@@ -11,7 +11,7 @@ namespace VIToACS.Models
 
         public double End { get; set; }
 
-        [IsFacetable]
+        [IsFacetable, IsFilterable]
         public List<string> Tags { get; set; }
 
         public List<KeyFrame> KeyFrames { get; set; }

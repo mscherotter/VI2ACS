@@ -29,5 +29,7 @@ namespace VIToACS.Models
         public List<Topic> Topics { get; set; }
 
         public Playlist Playlist { get; set; }
+
+        public List<Sentiment> Sentiments { get; set; }
     }
 }

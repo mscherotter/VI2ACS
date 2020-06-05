@@ -89,6 +89,17 @@ namespace VIToACS.Parsers
                             };
                         });
 
+                        var sentiments = Utils.CreateCollection(insights, instance, "sentiments", delegate (JsonElement sentiment)
+                        {
+                            return new Sentiment
+                            {
+                                SentimentType = sentiment.GetProperty("sentimentType").GetString(),
+                                AverageScore = sentiment.GetProperty("averageScore").GetDouble(),
+                                Start = Utils.GetTimeSpan(instance, "start"),
+                                End = Utils.GetTimeSpan(instance, "end")
+                            };
+                        });
+
                         thumbnails.Add(new Thumbnail
                         {
                             Id = instance.GetProperty("thumbnailId").GetString(),
@@ -101,7 +112,8 @@ namespace VIToACS.Parsers
                             Keywords = (keywords != null) ? keywords.ToList() : null,
                             Topics = (topics != null) ? topics.ToList() : null,
                             ShotTags = Utils.GetTags(shot),
-                            Playlist = Utils.CreatePlaylist(doc.RootElement)
+                            Playlist = Utils.CreatePlaylist(doc.RootElement),
+                            Sentiments = sentiments.Any() ? sentiments.ToList() : null
                         });
                     }
                 }

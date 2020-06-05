@@ -30,7 +30,7 @@ namespace VIToACS.Parsers
                     foreach (var keyFrame in shot.GetProperty("keyFrames").EnumerateArray())
                     {
                         var instance = keyFrame.GetProperty("instances").EnumerateArray().First();
-                        var faces = new List<string>();
+                        var faces = new List<Face>();
                         foreach (var face in allFaces)
                         {
                             foreach (var appearance in face.GetProperty("appearances").EnumerateArray())
@@ -40,7 +40,7 @@ namespace VIToACS.Parsers
                                 var isin = Utils.IsIn(instance, start, end);
                                 if (isin)
                                 {
-                                    faces.Add(face.GetProperty("name").GetString());
+                                    faces.Add(new Face(instance, face));
                                 }
                             }
                         }

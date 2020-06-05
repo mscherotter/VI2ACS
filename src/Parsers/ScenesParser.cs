@@ -84,15 +84,7 @@ namespace VIToACS.Parsers
 
                 var faces = Utils.GetCollection(insights, "faces", start, end, delegate (JsonElement faceInstance, JsonElement face)
                 {
-                    return new Face
-                    {
-                        Id = face.GetProperty("id").GetInt32(),
-                        Name = face.GetProperty("name").GetString(),
-                        Start = Utils.GetTimeSpan(faceInstance, "start"),
-                        End = Utils.GetTimeSpan(faceInstance, "end"),
-                        Confidence = face.GetProperty("confidence").GetDouble(),
-                        KnownPersonId = face.TryGetProperty("knownPersonId", out JsonElement value2) ? face.GetProperty("knownPersonId").GetString() : null
-                    };
+                    return new Face(faceInstance, face);
                 });
 
                 var emotions = Utils.GetCollection(insights, "emotions", start, end, delegate (JsonElement element, JsonElement parent)

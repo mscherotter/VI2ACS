@@ -14,8 +14,7 @@ namespace VIToACS.Models
 
         public double End { get; set; }
 
-        [IsFacetable, IsFilterable]
-        public List<string> Faces { get; set; }
+        public List<Face> Faces { get; set; }
 
         [IsFacetable, IsFilterable]
         public List<string> Labels { get; set; }

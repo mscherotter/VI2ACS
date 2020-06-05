@@ -20,7 +20,7 @@ namespace VIToACS.Services
         private readonly VideoIndexerConfig _config;
         private readonly ReaderConfig _readerConfig;
         private readonly ILog _logger;
-        private static string _apiUrl = "https://api.videoindexer.ai";
+        private readonly static string _apiUrl = "https://api.videoindexer.ai";
         private const bool _allowEdit = false;
 
         // Cached access token

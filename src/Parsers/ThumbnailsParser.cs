@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Text.Json;
@@ -31,6 +32,10 @@ namespace VIToACS.Parsers
                 {
                     foreach (var keyFrame in shot.GetProperty("keyFrames").EnumerateArray())
                     {
+                        var keyFrameId = keyFrame.GetProperty("id").GetInt32();
+                        
+                        System.Diagnostics.Debug.WriteLine($"Keyframe {keyFrameId}");
+
                         var instance = keyFrame.GetProperty("instances").EnumerateArray().First();
                         var faces = new List<Face>();
                         foreach (var face in allFaces)
@@ -97,9 +102,27 @@ namespace VIToACS.Parsers
                             };
                         });
 
+                        var namedLocations = Utils.CreateCollection(insights, instance, "namedLocations", delegate (JsonElement namedLocation)
+                        {
+                            return new NamedLocation
+                            {
+                                Name = namedLocation.GetProperty("name").GetString(),
+                                ReferenceId = namedLocation.GetProperty("referenceId").GetString(),
+                                ReferenceUrl = namedLocation.GetProperty("referenceUrl").GetString(),
+                                Description = namedLocation.GetProperty("description").GetString(),
+                                Confidence = namedLocation.GetProperty("confidence").GetDouble(),
+                                IsCustom = namedLocation.GetProperty("isCustom").GetBoolean(),
+                            };
+                        });
+
+                        string storageAccountName = "";
+                        string container = "";
+                        var thumbnailId = instance.GetProperty("thumbnailId").GetString();
+
                         thumbnails.Add(new Thumbnail
                         {
-                            Id = instance.GetProperty("thumbnailId").GetString(),
+                            Id = thumbnailId,
+                            Uri = $"https://{storageAccountName}.blob.core.windows.net/{container}/{thumbnailId}.jpeg",
                             Video = Utils.CreateVideo(video),
                             Start = Utils.GetTimeSpan(instance, "start"),
                             End = Utils.GetTimeSpan(instance, "end"),
@@ -110,7 +133,8 @@ namespace VIToACS.Parsers
                             Topics = topics?.ToList(),
                             ShotTags = Utils.GetTags(shot),
                             Playlist = Utils.CreatePlaylist(doc.RootElement),
-                            Sentiments = sentiments?.ToList()
+                            Sentiments = sentiments?.ToList(),
+                            NamedLocations = namedLocations?.ToList()
                         });
                     }
                 }

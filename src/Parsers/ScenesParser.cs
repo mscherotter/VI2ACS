@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
 using System.Text.Json;
 using VIToACS.Models;
 
@@ -136,6 +135,19 @@ namespace VIToACS.Parsers
                     return Keyword.Create(keyword);
                 });
 
+                var namedLocations = Utils.GetCollection(insights, "namedLocations", start, end, delegate (JsonElement instance, JsonElement namedLocation)
+                {
+                    return new NamedLocation
+                    {
+                        Name = namedLocation.GetProperty("name").GetString(),
+                        ReferenceId = namedLocation.GetProperty("referenceId").GetString(),
+                        ReferenceUrl = namedLocation.GetProperty("referenceUrl").GetString(),
+                        Description = namedLocation.GetProperty("description").GetString(),
+                        Confidence = namedLocation.GetProperty("confidence").GetDouble(),
+                        IsCustom = namedLocation.GetProperty("isCustom").GetBoolean(),
+                    };
+                });
+
                 scenes.Add(new Scene
                 {
                     Id = $"{videoId}_{sceneId}",
@@ -150,10 +162,11 @@ namespace VIToACS.Parsers
                     AudioEffects = audioEffects?.ToList(),
                     Sentiments = sentiments?.ToList(),
                     Playlist = Utils.CreatePlaylist(doc.RootElement),
-                    Keywords = keywords?.ToList()
+                    Keywords = keywords?.ToList(),
+                    NamedLocations = namedLocations?.ToList()
                 });
 
-                
+
             }
             return scenes;
         }

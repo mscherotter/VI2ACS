@@ -33,5 +33,8 @@ namespace VIToACS.Models
         /// Gets or sets the keywords
         /// </summary>
         public List<Keyword> Keywords { get; set; }
+
+        public List<NamedLocation> NamedLocations { get; set; }
+
     }
 }

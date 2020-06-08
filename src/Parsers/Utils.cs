@@ -84,14 +84,21 @@ namespace VIToACS.Parsers
         {
             var elementStart = TimeSpan.Parse(element.GetProperty("start").GetString(), CultureInfo.InvariantCulture);
             var elementEnd = TimeSpan.Parse(element.GetProperty("end").GetString(), CultureInfo.InvariantCulture);
-            return (elementStart >= start && elementStart <= end) || (elementEnd >= start && elementEnd <= end);
+
+            bool isIn = (elementStart >= start && elementStart <= end) || (elementEnd >= start && elementEnd <= end);
+
+            return isIn;
         }
 
         public static double GetTimeSpan(JsonElement element, string name)
         {
-            if (TimeSpan.TryParse(element.GetProperty(name).GetString(), out TimeSpan result))
+            var timeSpanText = element.GetProperty(name).GetString();
+
+            if (TimeSpan.TryParse(timeSpanText, out TimeSpan result))
             {
-                return result.TotalSeconds;
+                var totalSeconds = result.TotalSeconds;
+
+                return totalSeconds;
             }
 
             return 0;

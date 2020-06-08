@@ -122,7 +122,7 @@ namespace VIToACS.Parsers
                         thumbnails.Add(new Thumbnail
                         {
                             Id = thumbnailId,
-                            Uri = $"https://{storageAccountName}.blob.core.windows.net/{container}/{thumbnailId}.jpeg",
+                            //Uri will be added after this step,
                             Video = Utils.CreateVideo(video),
                             Start = Utils.GetTimeSpan(instance, "start"),
                             End = Utils.GetTimeSpan(instance, "end"),

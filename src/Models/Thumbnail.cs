@@ -25,7 +25,7 @@ namespace VIToACS.Models
 
         public List<Keyword> Keywords { get; set; }
 
-        [IsFacetable]
+        [IsFacetable, IsFilterable]
         public List<string> ShotTags { get; set; }
 
         public List<Topic> Topics { get; set; }

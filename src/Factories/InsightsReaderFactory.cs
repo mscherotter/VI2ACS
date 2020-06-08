@@ -22,7 +22,7 @@ namespace VIToACS.Factories
 
             if (readerConfig.Type == "AzureBlob")
             {
-                // If is it a AzureBlob type, it will add the Uri of the image as a property
+                // If it is a AzureBlob type, it will add the Uri of the image as a property
                 var thumbnailImageLocation = writerConfig.AzureBlob.ThumbnailsContainer;
                 return new AzureBlobInsightsReaderService(readerConfig, logger, thumbnailImageLocation);
             }

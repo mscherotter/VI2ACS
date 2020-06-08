@@ -9,19 +9,25 @@ namespace VIToACS.Factories
     public static class InsightsReaderFactory
     {
 
-        public static IInsightsReader CreateInstance(ReaderConfig config, ILog logger)
+        public static IInsightsReader CreateInstance(ReaderConfig readerConfig, WriterConfig writerConfig, ILog logger)
         {
-            if (config == null)
+            if (readerConfig == null)
+            {
+                throw new NullReferenceException();
+            }
+            if (writerConfig == null)
             {
                 throw new NullReferenceException();
             }
 
-            if (config.Type == "AzureBlob")
+            if (readerConfig.Type == "AzureBlob")
             {
-                return new AzureBlobInsightsReaderService(config, logger);
+                // If it is a AzureBlob type, it will add the Uri of the image as a property
+                var thumbnailImageLocation = writerConfig.AzureBlob.ThumbnailsContainer;
+                return new AzureBlobInsightsReaderService(readerConfig, logger, thumbnailImageLocation);
             }
 
-            return new FileStreamInsightsReaderService(config, logger);
+            return new FileStreamInsightsReaderService(readerConfig, logger);
         }
 
     }

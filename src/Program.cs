@@ -34,7 +34,7 @@ namespace VIToACS
                 .AddSingleton<AppHost, AppHost>()
                 .AddSingleton(VideoIndexerFactory.CreateInstance(videoIndexConfig, readerConfig, logger))
                 .AddSingleton(AzureSearchFactory.CreateInstance(azureSearchConfig, logger))
-                .AddSingleton(InsightsReaderFactory.CreateInstance(readerConfig, logger))
+                .AddSingleton(InsightsReaderFactory.CreateInstance(readerConfig, writerConfig, logger))
                 .AddSingleton(DocumentWriterFactory.CreateInstance(writerConfig, logger))
                 .AddSingleton(logger)
                 .BuildServiceProvider();

@@ -8,6 +8,8 @@ namespace VIToACS.Models
         [System.ComponentModel.DataAnnotations.Key]
         public string Id { get; set; }
 
+        public string Uri { get; set; }
+
         public Video Video { get; set; }
 
         public double Start { get; set; }

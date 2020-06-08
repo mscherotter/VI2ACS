@@ -20,11 +20,12 @@ namespace VIToACS.Services
         private readonly ReaderConfig _config;
         private readonly ILog _logger;
         private readonly BlobServiceClient _blobServiceClient;
-        private BlobContainerClient _insightsContainerClient;
+        private readonly BlobContainerClient _insightsContainerClient;
         private readonly BlobContainerClient _failedInsightsContainerClient;
+        private readonly string _thumbnailImageLocation;
 
 
-        public AzureBlobInsightsReaderService(ReaderConfig config, ILog logger)
+        public AzureBlobInsightsReaderService(ReaderConfig config, ILog logger, string thumbnailImageLocation)
         {
             if (config == null || logger == null)
             {
@@ -38,6 +39,7 @@ namespace VIToACS.Services
             _insightsContainerClient.CreateIfNotExists();
             _failedInsightsContainerClient = _blobServiceClient.GetBlobContainerClient(_config.AzureBlob.FailedInsightsContainer);
             _failedInsightsContainerClient.CreateIfNotExists();
+            _thumbnailImageLocation = thumbnailImageLocation;
         }
 
         public void AddNewFile(string fileName, string content)
@@ -108,6 +110,12 @@ namespace VIToACS.Services
                 }
                 else
                 {
+                    // Update the Uri for each thumbnail
+                    foreach (var thumbnail in thumbnails)
+                    {
+                        thumbnail.Uri = $"https://{ _blobServiceClient.AccountName }.blob.core.windows.net/{ _thumbnailImageLocation }/thumbnail_{ Path.GetFileNameWithoutExtension(file) }_{ thumbnail.Id }.jpeg";
+                    }
+
                     thumbnailsJson = JsonSerializer.Serialize(thumbnails, new JsonSerializerOptions { WriteIndented = true, IgnoreNullValues = true });
                     _logger.Debug($"The file { file } has { thumbnails.Count() } thumbnails.");
                 }

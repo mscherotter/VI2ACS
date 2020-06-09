@@ -75,6 +75,8 @@ namespace VIToACS.Parsers
                     {
                         Id = item.GetProperty("id").GetInt32(),
                         Text = item.GetProperty("text").GetString(),
+                        Confidence = item.GetProperty("confidence").GetDouble(),
+                        SpeakerId = item.GetProperty("speakerId").GetInt32(),
                         Language = item.GetProperty("language").GetString(),
                         Start = Utils.GetTimeSpan(transcriptInstance, "start"),
                         End = Utils.GetTimeSpan(transcriptInstance, "end")
@@ -99,13 +101,22 @@ namespace VIToACS.Parsers
 
                 var labels = Utils.GetCollection(insights, "labels", start, end, delegate (JsonElement element, JsonElement parent)
                 {
+                    string referenceId = null;
+                
+                    if (parent.TryGetProperty("referenceId", out JsonElement value))
+                    {
+                        referenceId = value.GetString();
+                    }
+
                     return new Label
                     {
                         Id = parent.GetProperty("id").GetInt32(),
                         Name = parent.GetProperty("name").GetString(),
                         Start = Utils.GetTimeSpan(element, "start"),
                         End = Utils.GetTimeSpan(element, "end"),
-                        Confidence = element.GetProperty("confidence").GetDouble()
+                        Confidence = element.GetProperty("confidence").GetDouble(),
+                        ReferenceId = referenceId,
+                        Language = parent.GetProperty("language").GetString()
                     };
                 });
 

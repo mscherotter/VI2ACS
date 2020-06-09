@@ -2,12 +2,18 @@
 
 namespace VIToACS.Models
 {
-    public class Label
+    public sealed class Label
     {
         public int Id { get; set; }
 
         [IsFilterable, IsFacetable]
         public string Name { get; set; }
+
+        [IsFilterable, IsFacetable]
+        public string ReferenceId { get; set; }
+
+        [IsFilterable, IsFacetable]
+        public string Language { get; set; }
 
         public double Start { get; set; }
 

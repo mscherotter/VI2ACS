@@ -35,6 +35,5 @@ namespace VIToACS.Models
         public List<Keyword> Keywords { get; set; }
 
         public List<NamedLocation> NamedLocations { get; set; }
-
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Azure.Search;
+using System.Collections.Generic;
 
 namespace VIToACS.Models
 {
@@ -12,5 +13,10 @@ namespace VIToACS.Models
         public double Start { get; set; }
 
         public double End { get; set; }
+
+        /// <summary>
+        /// Gets or sets the custom vision models
+        /// </summary>
+        public List<CustomVision> CustomVisionModels { get; set; }
     }
 }

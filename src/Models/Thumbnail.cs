@@ -35,5 +35,10 @@ namespace VIToACS.Models
         public List<Sentiment> Sentiments { get; set; }
 
         public List<NamedLocation> NamedLocations { get; set; }
+
+        /// <summary>
+        /// Gets or sets the results from custom vision models
+        /// </summary>
+        public List<CustomVision> CustomVisionModels { get; set; }
     }
 }

@@ -5,6 +5,7 @@ namespace VIToACS.Models
 {
     public class Shot
     {
+        [IsFilterable]
         public int Id { get; set; }
 
         public double Start { get; set; }

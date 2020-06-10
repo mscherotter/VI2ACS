@@ -19,6 +19,7 @@ Various fields are facetable, filterable, and searchable.  Look at the model cla
 - Search for scenes that have a refrigerator in them: ```$count=true&$filter=Labels/any(label: label/Name eq 'refrigerator')&$select=Start,End```
 - Find me the joyful scenes with John Doe about a restuarant: ```$filter=Faces/any(f: f/Name eq 'John Doe') and Emotions/any(e: e/Type eq 'Joy')&$count=true&search='restaurant'```
 - Find me any scenes that have a visual content moderation score greater than 0.5 and what faces do we have in them?: ```$filter=VisualContentModerations/any(v: v/RacyScore gt 0.5)&facet=Faces/Name```
+- What other peopel are in scenes with John Doe that have extreme close-up shots? ```facet= Faces/Name&$filter=Shots/any(s: s/Tags/any(t: t eq 'ExtremeCloseUp')) and Faces/any(f: f/Name eq 'John Doe')```
 
 #### Thumbnail Index
 - Search for any thumbnail that has John Doe in it and show me the emotional facets: ```$filter=Faces/any(f: f eq 'John Doe')&facet=Emotions/Type```

@@ -15,6 +15,7 @@ namespace VIToACS.Models
         [IsSearchable]
         public string Description { get; set; }
 
+        [IsFilterable]
         public double Confidence { get; set; }
 
         [IsFilterable]

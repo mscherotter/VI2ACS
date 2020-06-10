@@ -102,7 +102,7 @@ namespace VIToACS.Parsers
                 var labels = Utils.GetCollection(insights, "labels", start, end, delegate (JsonElement element, JsonElement parent)
                 {
                     string referenceId = null;
-                
+
                     if (parent.TryGetProperty("referenceId", out JsonElement value))
                     {
                         referenceId = value.GetString();
@@ -159,6 +159,15 @@ namespace VIToACS.Parsers
                     };
                 });
 
+                var contentModeration = Utils.GetCollection(insights, "visualContentModeration", start, end, delegate (JsonElement instance, JsonElement c)
+                { 
+                    return new VisualContentModeration {
+                        Id = c.GetProperty("id").GetInt32(),
+                        AdultScore = c.GetProperty("adultScore").GetDouble(),
+                        RacyScore = c.GetProperty("racyScore").GetDouble()
+                    };
+                });
+
                 scenes.Add(new Scene
                 {
                     Id = $"{videoId}_{sceneId}",
@@ -174,7 +183,8 @@ namespace VIToACS.Parsers
                     Sentiments = sentiments?.ToList(),
                     Playlist = Utils.CreatePlaylist(doc.RootElement),
                     Keywords = keywords?.ToList(),
-                    NamedLocations = namedLocations?.ToList()
+                    NamedLocations = namedLocations?.ToList(),
+                    VisualContentModerations = contentModeration?.ToList()
                 });
 
 

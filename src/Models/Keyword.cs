@@ -7,6 +7,8 @@ namespace VIToACS.Models
     {
         [IsSearchable, IsFilterable, IsFacetable]
         public string Text { get; set; }
+
+        [IsFilterable]
         public double Confidence { get; set; }
 
         /// <summary>

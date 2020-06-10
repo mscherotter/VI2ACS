@@ -19,6 +19,7 @@ namespace VIToACS.Models
 
         public double End { get; set; }
 
+        [IsFilterable]
         public double Confidence { get; set; }
     }
 }

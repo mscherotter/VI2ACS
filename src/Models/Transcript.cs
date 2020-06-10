@@ -12,6 +12,7 @@ namespace VIToACS.Models
         /// <summary>
         /// Gets or sets the confidence (0-1)
         /// </summary>
+        [IsFilterable]
         public double Confidence { get; set; }
 
         /// <summary>

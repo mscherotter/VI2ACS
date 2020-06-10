@@ -4,6 +4,7 @@ Created by Michael S. Scherotter, Kelsey Huebner, and Marcel Aldecoa
 This code parses [Azure Video Indexer](https://www.videoindexer.ai/) insights data into scene and thumbnail documents, storing in [Azure Blob Storage](https://azure.microsoft.com/en-us/services/storage/blobs/) or local storage. The documents are converted to [Azure Cognitive Search](https://azure.microsoft.com/en-us/services/cognitive-services/) scene and thumbnail indices. It also allows the download of thumbnail files.  
 
 ## Search Components
+
 ### Scene Index
 The **sceneindex** allows the creation of queries for scenes that have certain metadata, including transcript, faces, emotions, sentiment, labels, and audio effects.  There should be one document for each scene in each video.  The Video Indexer insights are pivoted on the scene entities to make the search documents. This index is ready to add additional insights from custom vision models to the Scene/Shots/Keyframes/KeyFrame.CustomVisionModels collection.
 
@@ -12,10 +13,13 @@ The **thumbnailindex** allows the creation ofqueries for keyframe thumbnails tha
 
 ### Azure Search Query Examples
 Various fields are facetable, filterable, and searchable.  Look at the model classes for the IsFilterable, IsSearchable, and IsFacetable attributes on properties. 
+
 #### Scene Index
 - Search for scenes that have a specific person: ```$count=true&$filter=Faces/any(face: face/Name eq 'John Doe')&$select=Start,End```
 - Search for scenes that have a refrigerator in them: ```$count=true&$filter=Labels/any(label: label/Name eq 'refrigerator')&$select=Start,End```
 - Find me the joyful scenes with John Doe about a restuarant: ```$filter=Faces/any(f: f/Name eq 'John Doe') and Emotions/any(e: e/Type eq 'Joy')&$count=true&search='restaurant'```
+- Find me any scenes that have a visual content moderation score greater than 0.5 and what faces do we have in them?: ```$filter=VisualContentModerations/any(v: v/RacyScore gt 0.5)&facet=Faces/Name```
+
 #### Thumbnail Index
 - Search for any thumbnail that has John Doe in it and show me the emotional facets: ```$filter=Faces/any(f: f eq 'John Doe')&facet=Emotions/Type```
 - Search for any thumbnail with Jon Doe in it indoors in a video about health and wellbeing: ```facet=Faces/Name&facet=Keywords/Text&facet=Labels&facet=Sentiments/SentimentType&$filter=Faces/any(f: f/Name eq 'John Doe') and Labels/any(l: l eq 'indoor') and Topics/any(t: t/Name eq 'Health and Wellbeing')&$count=true```

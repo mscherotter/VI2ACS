@@ -16,6 +16,7 @@ namespace VIToACS.Models
         /// <summary>
         /// Gets or sets the probability 0-1
         /// </summary>
+        [IsFilterable]
         public double Probability { get; set; }
     }
 }

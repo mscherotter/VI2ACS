@@ -7,6 +7,7 @@ namespace VIToACS.Models
         [IsFilterable, IsFacetable]
         public string SentimentType { get; set; }
 
+        [IsFilterable]
         public double AverageScore { get; set; }
 
         public double Start { get; set; }

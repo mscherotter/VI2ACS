@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VIToACS", "VIToACS.csproj", "{484313A8-E165-4E48-B784-CBAF413F075F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VIToACS", "VIToACS.csproj", "{484313A8-E165-4E48-B784-CBAF413F075F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{58C2F8F0-E668-4E77-816F-BF92750DCE09}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

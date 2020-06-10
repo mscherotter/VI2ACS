@@ -1,18 +1,25 @@
 # Video Indexer to Azure Cognitive Search
-Created by Michael S. Scherotter, Kelsey Huebner and Marcel Aldecoa
+Created by Michael S. Scherotter, Kelsey Huebner, and Marcel Aldecoa
 
-This code parses [Azure Video Indexer](https://www.videoindexer.ai/) insights data into scene and thumbnail documents, storing in [Azure Blob Storage](https://azure.microsoft.com/en-us/services/storage/blobs/) or local storage. The documents are converted to [Azure Cognitive Search](https://azure.microsoft.com/en-us/services/cognitive-services/) scene and thumbnail indices. It also allows the download of thumbnail files.
+This code parses [Azure Video Indexer](https://www.videoindexer.ai/) insights data into scene and thumbnail documents, storing in [Azure Blob Storage](https://azure.microsoft.com/en-us/services/storage/blobs/) or local storage. The documents are converted to [Azure Cognitive Search](https://azure.microsoft.com/en-us/services/cognitive-services/) scene and thumbnail indices. It also allows the download of thumbnail files.  
 
 ## Search Components
 ### Scene Index
-The **sceneindex** allows the creation of queries for scenes that have certain metadata, including transcript, faces, emotions, sentiment, labels, and audio effects.  There should be one document for each scene in each video.
+The **sceneindex** allows the creation of queries for scenes that have certain metadata, including transcript, faces, emotions, sentiment, labels, and audio effects.  There should be one document for each scene in each video.  The Video Indexer insights are pivoted on the scene entities to make the search documents. This index is ready to add additional insights from custom vision models to the Scene/Shots/Keyframes/KeyFrame.CustomVisionModels collection.
 
 ### Thumbnail Index
-The **thumbnailindex** allows the creation ofqueries for keyframe thumbnails that have been extracted by video indexer that have certain metadata including faces, labels, OCR, keywords, and shot tags.  There should be one thumbnail document for each keyframe in each video.
+The **thumbnailindex** allows the creation ofqueries for keyframe thumbnails that have been extracted by video indexer that have certain metadata including faces, labels, OCR, keywords, and shot tags.  There should be one thumbnail document for each keyframe in each video.  The Video Indexer insights are pivoted on the keyframe thumbnail entities to make the search documents.  This index is ready to add additional insights from custom vision models to the Thumbnail.CustomVisionModels collection.
 
-### Query Syntax
-- Search for scenes that have a specific person: ```$count=true&$filter=faces/any(face: face/name eq 'John Doe')&$select=start,end```
-- Search for scenes that have a refrigerator in them: ```$count=true&$filter=labels/any(name: label/name eq 'refrigerator')&$select=start,end```
+### Azure Search Query Examples
+Various fields are facetable, filterable, and searchable.  Look at the model classes for the IsFilterable, IsSearchable, and IsFacetable attributes on properties. 
+#### Scene Index
+- Search for scenes that have a specific person: ```$count=true&$filter=Faces/any(face: face/Name eq 'John Doe')&$select=Start,End```
+- Search for scenes that have a refrigerator in them: ```$count=true&$filter=Labels/any(label: label/Name eq 'refrigerator')&$select=Start,End```
+- Find me the joyful scenes with John Doe about a restuarant: ```$filter=Faces/any(f: f/Name eq 'John Doe') and Emotions/any(e: e/Type eq 'Joy')&$count=true&search='restaurant'```
+#### Thumbnail Index
+- Search for any thumbnail that has John Doe in it and show me the emotional facets: ```$filter=Faces/any(f: f eq 'John Doe')&facet=Emotions/Type```
+- Search for any thumbnail with Jon Doe in it indoors in a video about health and wellbeing: ```facet=Faces/Name&facet=Keywords/Text&facet=Labels&facet=Sentiments/SentimentType&$filter=Faces/any(f: f/Name eq 'John Doe') and Labels/any(l: l eq 'indoor') and Topics/any(t: t/Name eq 'Health and Wellbeing')&$count=true```
+- Search for a thumbnail with an explosion (using a custom vision model): ```count=true&$filter=CustomVisionModels/any(m: m/id eq 'specialeffects')/Predictions/any(p: p/TagName eq 'explosion' and p/Probability gt 0.8)```
 
 ## The code
 The main entry point for the application is ```Program.cs```. It will read the configuration section of ```appsettings.json``` and create an instance of each service according to the type: **FileStream** or **AzureBlob**. The ```AppHost.cs``` has the main logic inside the method ```Run()```.
@@ -59,6 +66,9 @@ public class Scene
 
     public Playlist Playlist { get; set; }
 
+    public List<Keyword> Keywords { get; set; }
+
+    public List<NamedLocation> NamedLocations { get; set; }
 }
 ```
 > Thumbnail class
@@ -68,28 +78,35 @@ public class Thumbnail
     [System.ComponentModel.DataAnnotations.Key]
     public string Id { get; set; }
 
+    public string Uri { get; set; }
+
     public Video Video { get; set; }
 
     public double Start { get; set; }
 
     public double End { get; set; }
 
-    [IsFacetable]
-    public List<string> Faces { get; set; }
+    public List<Face> Faces { get; set; }
 
-    [IsFacetable]
+    [IsFacetable, IsFilterable]
     public List<string> Labels { get; set; }
 
     public List<Ocr> Ocr { get; set; }
 
     public List<Keyword> Keywords { get; set; }
 
-    [IsFacetable]
+    [IsFacetable, IsFilterable]
     public List<string> ShotTags { get; set; }
 
     public List<Topic> Topics { get; set; }
 
     public Playlist Playlist { get; set; }
+
+    public List<Sentiment> Sentiments { get; set; }
+
+    public List<NamedLocation> NamedLocations { get; set; }
+
+    public List<CustomVision> CustomVisionModels { get; set; }
 }
 ```
 

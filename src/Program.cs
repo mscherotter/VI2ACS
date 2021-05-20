@@ -6,6 +6,7 @@ using System.IO;
 using System.Reflection;
 using VIToACS.Configurations;
 using VIToACS.Factories;
+using VIToACS.Parsers;
 
 namespace VIToACS
 {
@@ -29,18 +30,35 @@ namespace VIToACS
             var writerConfig = config.GetSection("writer").Get<WriterConfig>();
             var logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-            // Build the services
-            var serviceProvider = new ServiceCollection()
-                .AddSingleton<AppHost, AppHost>()
-                .AddSingleton(VideoIndexerFactory.CreateInstance(videoIndexConfig, readerConfig, logger))
-                .AddSingleton(AzureSearchFactory.CreateInstance(azureSearchConfig, logger))
-                .AddSingleton(InsightsReaderFactory.CreateInstance(readerConfig, writerConfig, logger))
-                .AddSingleton(DocumentWriterFactory.CreateInstance(writerConfig, logger))
-                .AddSingleton(logger)
-                .BuildServiceProvider();
+            var videoIndexer = VideoIndexerFactory<Models.Scene>.CreateInstance(videoIndexConfig, readerConfig, logger);
 
-            serviceProvider.GetService<AppHost>().Run();
+            if (videoIndexer == null)
+            {
+                // Build the services
+                var serviceProvider = new ServiceCollection()
+                    .AddSingleton<AppHost<Models.Script.Scene>, AppHost<Models.Script.Scene>>()
+                    .AddSingleton(AzureSearchFactory.CreateInstance(azureSearchConfig, logger))
+                    .AddSingleton(InsightsReaderFactory<Models.Script.Scene, ScriptParser>.CreateInstance(readerConfig, writerConfig, logger))
+                    .AddSingleton(DocumentWriterFactory.CreateInstance(writerConfig, logger))
+                    .AddSingleton(logger)
+                    .BuildServiceProvider();
 
+                serviceProvider.GetService<AppHost<Models.Script.Scene>>().Run();
+            }
+            else
+            {
+                // Build the services
+                var serviceProvider = new ServiceCollection()
+                    .AddSingleton<AppHost<Models.Scene>, AppHost<Models.Scene>>()
+                    .AddSingleton(videoIndexer)
+                    .AddSingleton(AzureSearchFactory.CreateInstance(azureSearchConfig, logger))
+                    .AddSingleton(InsightsReaderFactory<Models.Scene, ScenesParser>.CreateInstance(readerConfig, writerConfig, logger))
+                    .AddSingleton(DocumentWriterFactory.CreateInstance(writerConfig, logger))
+                    .AddSingleton(logger)
+                    .BuildServiceProvider();
+
+                serviceProvider.GetService<AppHost<Models.Scene>>().Run();
+            }
         }
     }
 }

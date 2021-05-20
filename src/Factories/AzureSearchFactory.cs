@@ -15,6 +15,11 @@ namespace VIToACS.Factories
                 throw new NullReferenceException();
             }
 
+            if (config.Type == "ScriptParser")
+            {
+                return new ScriptParserService(config, logger);
+            }
+
             return new AzureSearchService(config, logger);
         }
     }

@@ -4,15 +4,23 @@ using VIToACS.Interfaces;
 
 namespace VIToACS
 {
-    public class AppHost
+    public class AppHost<T> 
     {
-        private readonly IVideoIndexer _videoIndexerService;
+        private readonly IVideoIndexer<T> _videoIndexerService;
         private readonly IAzureSearch _azureSearchService;
-        private readonly IInsightsReader _insightsReaderService;
+        private readonly IInsightsReader<T> _insightsReaderService;
         private readonly IDocumentWriter _documentWriterService;
         private readonly ILog _logger;
 
-        public AppHost(IVideoIndexer videoIndexerService, IAzureSearch azureSearchService, IInsightsReader insightsReaderService, IDocumentWriter documentWriterService, ILog logger)
+        public AppHost(IAzureSearch azureSearchService, IInsightsReader<T> insightsReaderService, IDocumentWriter documentWriterService, ILog logger)
+        {
+            _azureSearchService = azureSearchService;
+            _insightsReaderService = insightsReaderService;
+            _documentWriterService = documentWriterService;
+            _logger = logger;
+        }
+
+        public AppHost(IVideoIndexer<T> videoIndexerService, IAzureSearch azureSearchService, IInsightsReader<T> insightsReaderService, IDocumentWriter documentWriterService, ILog logger)
         {
             _videoIndexerService = videoIndexerService;
             _azureSearchService = azureSearchService;
@@ -25,7 +33,7 @@ namespace VIToACS
         {
             _logger.Info("Starting the Application.");
 
-            if (_videoIndexerService.IsDownloadInsightsEnabled())
+            if (_videoIndexerService != null && _videoIndexerService.IsDownloadInsightsEnabled())
             {
                 // List the videos from Video Library and extract the insights file
                 // The new file is add to a location known by the reader service
@@ -90,7 +98,7 @@ namespace VIToACS
                         _azureSearchService.UploadThumbnailDocuments(parsedDocument.Thumbnails);
                         _logger.Debug($"The thumbnails from the file { parsedDocument.FileName } have been parsed and uploaded.");
 
-                        if (_videoIndexerService.IsDownloadThumbnailsEnabled())
+                        if (_videoIndexerService  != null && _videoIndexerService.IsDownloadThumbnailsEnabled())
                         {
                             foreach (var thumbnail in parsedDocument.Thumbnails)
                             {
@@ -103,6 +111,7 @@ namespace VIToACS
                     }
                 }
             }
+
             _logger.Info("Finishing the Application.");
         }
     }

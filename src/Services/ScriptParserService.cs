@@ -5,18 +5,18 @@ using System;
 using System.Collections.Generic;
 using VIToACS.Configurations;
 using VIToACS.Interfaces;
-using VIToACS.Models;
+using VIToACS.Models.Script;
 
 namespace VIToACS.Services
 {
-    public class AzureSearchService : IAzureSearch, IDisposable
+    public class ScriptParserService : IAzureSearch, IDisposable
     {
         private readonly AzureSearchConfig _config;
         private readonly ILog _logger;
         private SearchServiceClient _client;
         private bool disposedValue = false;
 
-        public AzureSearchService(AzureSearchConfig config, ILog logger)
+        public ScriptParserService(AzureSearchConfig config, ILog logger)
         {
             if (config == null || logger == null)
                 throw new NullReferenceException();
@@ -37,7 +37,7 @@ namespace VIToACS.Services
                 var definition = new Microsoft.Azure.Search.Models.Index()
                 {
                     Name = indexName,
-                    Fields = FieldBuilder.BuildForType<Scene>()
+                    Fields = FieldBuilder.BuildForType<Models.Script.Scene>()
                 };
                 _client.Indexes.Create(definition);
             }
@@ -49,24 +49,24 @@ namespace VIToACS.Services
 
         public void CreateThumbnailIndex()
         {
-            string indexName = _config.ThumbnailIndexName;
-            if (_config.DeleteIndexIfExists)
-            {
-                DeleteIndexIfExists(indexName, _client);
-            }
-            if (!_client.Indexes.Exists(indexName))
-            {
-                var definition = new Microsoft.Azure.Search.Models.Index()
-                {
-                    Name = indexName,
-                    Fields = FieldBuilder.BuildForType<Thumbnail>()
-                };
-                _client.Indexes.Create(definition);
-            }
-            else
-            {
-                _logger.Warn($"The index { indexName } already exists.");
-            }
+            //string indexName = _config.ThumbnailIndexName;
+            //if (_config.DeleteIndexIfExists)
+            //{
+            //    DeleteIndexIfExists(indexName, _client);
+            //}
+            //if (!_client.Indexes.Exists(indexName))
+            //{
+            //    var definition = new Microsoft.Azure.Search.Models.Index()
+            //    {
+            //        Name = indexName,
+            //        Fields = FieldBuilder.BuildForType<Thumbnail>()
+            //    };
+            //    _client.Indexes.Create(definition);
+            //}
+            //else
+            //{
+            //    _logger.Warn($"The index { indexName } already exists.");
+            //}
         }
 
 
@@ -106,30 +106,30 @@ namespace VIToACS.Services
             }
         }
 
-        public void UploadThumbnailDocuments(IEnumerable<Thumbnail> thumbnailDocuments)
+        public void UploadThumbnailDocuments(IEnumerable<Models.Thumbnail> thumbnailDocuments)
         {
-            if (thumbnailDocuments == null)
-                throw new NullReferenceException();
+            //if (thumbnailDocuments == null)
+            //    throw new NullReferenceException();
 
-            SearchIndexClient indexClient = new SearchIndexClient(_config.Name, _config.ThumbnailIndexName, _client.SearchCredentials);
-            var actions = new List<IndexAction<Thumbnail>>();
-            foreach (var thumbnailDocument in thumbnailDocuments)
-            {
-                actions.Add(IndexAction.MergeOrUpload(thumbnailDocument));
-            }
-            var batch = IndexBatch.New(actions);
-            try { 
-                indexClient.Documents.Index(batch);
-            }
-            catch (IndexBatchException ex)
-            {
-                _logger.Error(ex.Message);
-                throw;
-            }
-            finally
-            {
-                indexClient.Dispose();
-            }
+            //SearchIndexClient indexClient = new SearchIndexClient(_config.Name, _config.ThumbnailIndexName, _client.SearchCredentials);
+            //var actions = new List<IndexAction<Thumbnail>>();
+            //foreach (var thumbnailDocument in thumbnailDocuments)
+            //{
+            //    actions.Add(IndexAction.MergeOrUpload(thumbnailDocument));
+            //}
+            //var batch = IndexBatch.New(actions);
+            //try { 
+            //    indexClient.Documents.Index(batch);
+            //}
+            //catch (IndexBatchException ex)
+            //{
+            //    _logger.Error(ex.Message);
+            //    throw;
+            //}
+            //finally
+            //{
+            //    indexClient.Dispose();
+            //}
         }
 
         protected virtual void Dispose(bool disposing)

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.Json;
+using VIToACS.Interfaces;
 using VIToACS.Models;
 
 namespace VIToACS.Parsers
 {
-    public static class ScenesParser
+    public class ScenesParser : ISceneParser<Scene>
     {
-        public static IEnumerable<Scene> GetScenes(JsonDocument doc)
+        public IEnumerable<Scene> GetScenes(JsonDocument doc)
         {
             if (doc == null)
             {

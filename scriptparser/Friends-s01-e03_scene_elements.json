@@ -1,0 +1,3273 @@
+{
+  "Scene": [
+    {
+      "id": 1,
+      "Set": "INT. CENTRAL PERK",
+      "INT/EXT": "INT",
+      "Time": "PERK",
+      "Loc": "",
+      "Element": [
+        {
+          "id": 1,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "Hi guys!",
+          "Noun": [
+            "guys"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 2,
+          "Type": "Character",
+          "Description": "ALL",
+          "Parenthetical": "(walla greetings)",
+          "Dialogue": "Hey, Phoebe! Hey!",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 3,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "Hey!  Oh, oh how did it go?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 4,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "Urn, not so good. He walked me to the subway and said, \"We should do this again.\"",
+          "Noun": [
+            "subway"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 6,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "Ouch!",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 7,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "What? He said, \"We should do it again.\" That's good, right?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 8,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Uh, no. Loosely translated, \"We should do this again,\" means `You will never see me naked!'",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 10,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "Since when?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 11,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "Since always. It's like dating language. You know, like, \"it's not you\" means \"it is you!\"",
+          "Noun": [
+            "language"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 13,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "Or \"you're such a nice guy\" means \"I'm going to be dating leather wearing alcoholics and complaining about them to you!\"",
+          "Noun": [
+            "guy",
+            "leather",
+            "alcoholics"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 15,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "Or, or, you know, urn, \"I think we should see other people\" means \"ha ha, I already am!\"",
+          "Noun": [
+            "urn",
+            "people"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 16,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "And everybody knows this?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 17,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "Oh, yeah. It cushions the blow.",
+          "Noun": [
+            "blow"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 18,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "Yeah. It's like when you were a kid and your parents put your dog to sleep and they tell you it went off to live on some farm.",
+          "Noun": [
+            "kid",
+            "parents",
+            "dog",
+            "farm"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 19,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "That's funny. But, no, because our, our parents actually did uh send our dog off to live on a farm.",
+          "Noun": [
+            "parents",
+            "dog",
+            "farm"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 20,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Un, Ross?",
+          "Noun": "",
+          "NE": [
+            {
+              "ORG": "Un"
+            },
+            {
+              "PERSON": "Ross"
+            }
+          ]
+        },
+        {
+          "id": 21,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "Well, (laugh) well, hello!  The Milner's farm in Connecticut? (os) The Milners. They had this unbelievable farm that, (on camera) that, you know, had horses, (os) and rabbits that he could chase. (on camera) And, and it was...  Oh, my God! Chi Chi!",
+          "Noun": [
+            "farm",
+            "os",
+            "farm",
+            "camera",
+            "horses",
+            "os",
+            "rabbits",
+            "camera"
+          ],
+          "NE": [
+            {
+              "ORG": "Milner"
+            },
+            {
+              "GPE": "Connecticut"
+            },
+            {
+              "PERSON": "Chi Chi"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "Set": "INT. CHANDLER'S APARTMENT  DAY",
+      "INT/EXT": "INT",
+      "Time": "DAY",
+      "Loc": "CHANDLER'S APARTMENT",
+      "Element": [
+        {
+          "id": 1,
+          "Type": "Character",
+          "Description": "CHANDLER(OS)",
+          "Parenthetical": "",
+          "Dialogue": "So, how does it feel knowing you're about to die?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 2,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "Warden, in five minutes my pain will be over. But you'll have to live with the knowledge that you sent an honest man to die!",
+          "Noun": [
+            "minutes",
+            "pain",
+            "knowledge",
+            "man"
+          ],
+          "NE": [
+            {
+              "ORG": "Warden"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "Hey! That was really good!",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 4,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "Yeah? Thanks.  Let's keep going.",
+          "Noun": [
+            "Thanks"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 5,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "Okay. So, what do you want from me, Dimon? Huh?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 6,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "I just want to go back to my cell, because in my cell I can smoke.",
+          "Noun": [
+            "cell",
+            "cell"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 7,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "Smoke away! (sigh)",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 9,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "I think this is probably why Dimon smokes in his cell, alone.",
+          "Noun": [
+            "cell"
+          ],
+          "NE": [
+            {
+              "PERSON": "Dimon"
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "What?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 11,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "Relax your hand.  Let your wrist go. Not so much.",
+          "Noun": [
+            "hand",
+            "wrist"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 12,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "Whoa!",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 13,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "Hey!",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 14,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "Hey!",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 15,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "All right. Now try taking a puff. All right. Okay, no. Give it to me.",
+          "Noun": [
+            "puff"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 16,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "No, no, no. I'm not giving you a cigarette.",
+          "Noun": [
+            "cigarette"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 17,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "No. It's fine, it's fine. Look, do you want to get this part or not? Here.",
+          "Noun": [
+            "part"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 19,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "All right. Now, don't think of it as a cigarette. Think of it as the thing that has been missing from your hand. When you're holding it you feel right. You feel complete.",
+          "Noun": [
+            "cigarette",
+            "thing",
+            "hand"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 20,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "You miss it?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 21,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "NO, not so much. (sighs) All right. Now we smoke.  Oh, my God!",
+          "Noun": "",
+          "NE": ""
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "Set": "INT. CENTRAL PERK",
+      "INT/EXT": "INT",
+      "Time": "PERK",
+      "Loc": "",
+      "Element": [
+        {
+          "id": 1,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "No, no, no, no, no.  They say it's the same as the distance from the tip of a guy's thumb to the tip of his index finger.",
+          "Noun": [
+            "distance",
+            "tip",
+            "guy",
+            "thumb",
+            "tip",
+            "index",
+            "finger"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 2,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "That's ridiculous.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 3,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "Can I use either thumb.",
+          "Noun": [
+            "thumb"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 5,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "All right. Don't tell me! Don't tell me!  Decaf cappuccino for Joey. Coffee black. Latte and an ice tea. I'm getting pretty good at this.",
+          "Noun": [
+            "Decaf",
+            "cappuccino",
+            "Coffee",
+            "black",
+            "Latte",
+            "ice",
+            "tea"
+          ],
+          "NE": [
+            {
+              "PERSON": "Joey"
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "Excellent. That was really good.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 8,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "Good for me.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 10,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "Are you okay, Phoebe?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 11,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "Yeah. No, I'm just, it's, it's not even worth... It's my bank.",
+          "Noun": [
+            "bank"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 12,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "What did they do to you?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 13,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "It's not... It's just... Okay. I'm going through my mail and I open up their monthly, you know, statement!",
+          "Noun": [
+            "mail",
+            "statement"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 14,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "Easy.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 15,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "And then, there's five hundred extra dollars in my account.",
+          "Noun": [
+            "dollars",
+            "account"
+          ],
+          "NE": [
+            {
+              "MONEY": "five hundred extra dollars"
+            }
+          ]
+        },
+        {
+          "id": 16,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "Oh, Satan's minions at work again.",
+          "Noun": [
+            "minions",
+            "work"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 17,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "Oh, yes.  Because now I have to go down there and deal with them.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 18,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "What are you talking about? Keep it!",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 19,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "It's not mine.  I didn't earn it. If I kept it, it would be like stealing.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 20,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "Yeah, but if you spent it, it would be like shopping.",
+          "Noun": [
+            "shopping"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 21,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "Okay. Okay.  Let's say I bought a really great pair of shoes. Do you know what I'd hear with every step I took? \"Not mine! Not mine! Not mine!\" And even if I was happy, okay, and, and skipping.",
+          "Noun": [
+            "pair",
+            "shoes",
+            "step"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 22,
+          "Type": "Action",
+          "Description": "PHOEBE (CONTINUED)\n",
+          "Parenthetical": "",
+          "Dialogue": "",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 23,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "We're with you. We got it.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 24,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "Okay. I'd just, I'd never be able to enjoy it. It's be like this giant karmic debt. Uh...",
+          "Noun": [
+            "debt"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 25,
+          "Type": "Character",
+          "Description": "MONICA(OS)",
+          "Parenthetical": "",
+          "Dialogue": "Chandler, what are you doing? (on camera) Hey! What are you doing?",
+          "Noun": [
+            "camera"
+          ],
+          "NE": [
+            {
+              "PERSON": "Chandler"
+            }
+          ]
+        },
+        {
+          "id": 28,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Oh, gross!",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 29,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "What is this?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 30,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "I'm smoking!  I'm smoking! I'm smoking!",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 31,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "Oh, I can't believe you. You've been so good for three years.",
+          "Noun": [
+            "years"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 32,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "And this is my reward.",
+          "Noun": [
+            "reward"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 33,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "dust hold on a second, all right? Just think about what you went through the last time you quit.",
+          "Noun": [
+            "dust",
+            "time"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 34,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "Okay, so this time I won't quit.",
+          "Noun": [
+            "time"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 36,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "All right.  I'm putting it out! I'm putting it out!",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 37,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "Oh, no!  I, I can't drink this now!",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 38,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "All right.  I'm going to go change.  I've got a date.",
+          "Noun": [
+            "change",
+            "date"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 39,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "Is this Alan again? How's it going?",
+          "Noun": "",
+          "NE": [
+            {
+              "PERSON": "Alan"
+            }
+          ]
+        },
+        {
+          "id": 40,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "It's going pretty good, you know. It's nice and we're having fun.",
+          "Noun": [
+            "fun"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 41,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "So, when do we get to meet the guy?",
+          "Noun": [
+            "guy"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 42,
+          "Type": "Character",
+          "Description": "ROSS(OS)",
+          "Parenthetical": "",
+          "Dialogue": "Yeah.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 43,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Let's see... Today's Monday... Never!",
+          "Noun": [
+            "Today"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 45,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "Come on!",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 46,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "No, no! Not after what happened with Steve.",
+          "Noun": "",
+          "NE": [
+            {
+              "PERSON": "Steve"
+            }
+          ]
+        },
+        {
+          "id": 47,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "What are you talking about? We love Steve (lisps). Steve was sexy!",
+          "Noun": [
+            "lisps"
+          ],
+          "NE": [
+            {
+              "PERSON": "Steve"
+            },
+            {
+              "PERSON": "Steve"
+            }
+          ]
+        },
+        {
+          "id": 49,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "Sorry.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 50,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Look, I don't even know how I feel about him yet. dust give me a chance to figure that out.",
+          "Noun": [
+            "dust",
+            "chance"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 51,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "Well, then can we meet him?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 52,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "No! Sorry!",
+          "Noun": "",
+          "NE": ""
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "Set": "INT. IRIDIUM RESTAURANT  NIGHT",
+      "INT/EXT": "INT",
+      "Time": "NIGHT",
+      "Loc": "IRIDIUM RESTAURANT",
+      "Element": [
+        {
+          "id": 1,
+          "Type": "Character",
+          "Description": "MONICA(VO)",
+          "Parenthetical": "",
+          "Dialogue": "I mean, why should I let them meet him? (on camera)  I mean, I bring a guy home and within five minutes they're all over him.  I mean, they're like coyotes, picking off the weak members of the herd.",
+          "Noun": [
+            "camera",
+            "guy",
+            "home",
+            "minutes",
+            "coyotes",
+            "members",
+            "herd"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 2,
+          "Type": "Character",
+          "Description": "PAULA",
+          "Parenthetical": "",
+          "Dialogue": "Listen, as someone who's seen more than her share of bad beef... I'll tell you, that is not such a terrible thing. Come on now.  They're your friends.  They're just looking out after you.",
+          "Noun": [
+            "share",
+            "beef",
+            "thing",
+            "friends"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 3,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "I know, I know.  I just wish that once I'd bring a guy home they actually liked.",
+          "Noun": [
+            "guy",
+            "home"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 4,
+          "Type": "Character",
+          "Description": "PAULA",
+          "Parenthetical": "",
+          "Dialogue": "Well, you do realize that the odds of that happening are a little slimmer if they never get to meet the guy.",
+          "Noun": [
+            "odds",
+            "happening",
+            "guy"
+          ],
+          "NE": ""
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "Set": "INT. MONICA'S APARTMENT  NIGHT",
+      "INT/EXT": "INT",
+      "Time": "NIGHT",
+      "Loc": "MONICA'S APARTMENT",
+      "Element": [
+        {
+          "id": 1,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "Let it go, Ross.",
+          "Noun": "",
+          "NE": [
+            {
+              "PERSON": "Ross"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "Yeah. Well, you didn't know Chi Chi.",
+          "Noun": "",
+          "NE": [
+            {
+              "PERSON": "Chi Chi"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "Type": "Character",
+          "Description": "MONICA(OS)",
+          "Parenthetical": "",
+          "Dialogue": "Do you all promise?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 4,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "Yeah, we promise. We'll be good.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 5,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "We promise.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 6,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "We promise.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 7,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Chandler, do you promise to be good?",
+          "Noun": "",
+          "NE": [
+            {
+              "PERSON": "Chandler"
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "You can come in. But you're filter tip little body has to stay outside.",
+          "Noun": [
+            "filter",
+            "tip",
+            "body"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 9,
+          "Type": "Character",
+          "Description": "ROSS(OS)",
+          "Parenthetical": "",
+          "Dialogue": "Hey, Phoebs!",
+          "Noun": "",
+          "NE": [
+            {
+              "PERSON": "Phoebs"
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "\"Dear Miss Buffet, Thank you for calling attention to our error. We have credited your account five hundred dollars. We're sorry for the inconvenience and hope you'll accept this football phone as our free gift.\" Do you believe this? Now I have a thousand dollars and a football phone!",
+          "Noun": [
+            "attention",
+            "error",
+            "account",
+            "dollars",
+            "inconvenience",
+            "football",
+            "phone",
+            "gift",
+            "dollars",
+            "football",
+            "phone"
+          ],
+          "NE": [
+            {
+              "WORK_OF_ART": "Dear Miss Buffet"
+            },
+            {
+              "MONEY": "five hundred dollars"
+            },
+            {
+              "MONEY": "a thousand dollars"
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "What bank is this?",
+          "Noun": [
+            "bank"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 12,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Hey, it's him! Who is it?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 13,
+          "Type": "Character",
+          "Description": "ALAN(VO)",
+          "Parenthetical": "",
+          "Dialogue": "Alan.",
+          "Noun": "",
+          "NE": [
+            {
+              "PERSON": "Alan"
+            }
+          ]
+        },
+        {
+          "id": 14,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "Chandler!  He's here!",
+          "Noun": "",
+          "NE": [
+            {
+              "PERSON": "Chandler"
+            }
+          ]
+        },
+        {
+          "id": 15,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Okay.  Please be good.  Please! (os) I mean, just remember how much you all like me. Hi!",
+          "Noun": [
+            "os"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 16,
+          "Type": "Character",
+          "Description": "ALAN",
+          "Parenthetical": "",
+          "Dialogue": "Hi.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 17,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Alan, this is everybody. (os) Everybody, this is Alan.",
+          "Noun": [
+            "os"
+          ],
+          "NE": [
+            {
+              "PERSON": "Alan"
+            },
+            {
+              "PERSON": "Alan"
+            }
+          ]
+        },
+        {
+          "id": 18,
+          "Type": "Character",
+          "Description": "ALAN",
+          "Parenthetical": "(slight laugh)",
+          "Dialogue": "Hi.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 20,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "Hello, Alan.",
+          "Noun": "",
+          "NE": [
+            {
+              "PERSON": "Alan"
+            }
+          ]
+        },
+        {
+          "id": 21,
+          "Type": "Character",
+          "Description": "ALAN",
+          "Parenthetical": "",
+          "Dialogue": "I've heard so much about all of you guys.",
+          "Noun": [
+            "guys"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 23,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "(later that night) (vo)",
+          "Dialogue": "Thanks. (on camera) I'll call you tomorrow. Okay? Okay. Let's let the Alan bashing begin. Who's going to take the first shot?  Hm... (os) Come on.",
+          "Noun": [
+            "Thanks",
+            "camera",
+            "tomorrow",
+            "shot"
+          ],
+          "NE": [
+            {
+              "PERSON": "Alan"
+            }
+          ]
+        },
+        {
+          "id": 24,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "I'll go. (clears throat) Let's start with the way he kept picking at, you know, I, I'm sorry.  I can't do this. (os) I can't do it. (on camera) We loved him.",
+          "Noun": [
+            "throat",
+            "way",
+            "os",
+            "camera"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 25,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "We loved him!",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 26,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "He was great!",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 27,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "He was so great!",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 28,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Wait a minute! We're talking about someone that I'm going out with?",
+          "Noun": [
+            "minute"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 30,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "And did you notice?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 32,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "Do you know what was great? The way his smile was kinda crooked.",
+          "Noun": [
+            "way",
+            "smile"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 33,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "Yes, yes! Like the man in the shoe.",
+          "Noun": [
+            "man",
+            "shoe"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 34,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "What shoe?",
+          "Noun": [
+            "shoe"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 35,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "From the nursery rhyme.  There was a crooked man who had a crooked smile, who lived in a shoe, for awhile.",
+          "Noun": [
+            "nursery",
+            "rhyme",
+            "man",
+            "smile",
+            "shoe"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 36,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "So, I think (clears throat) Alan will become the yardstick against which all future boyfriends will be measured.",
+          "Noun": [
+            "throat",
+            "yardstick",
+            "boyfriends"
+          ],
+          "NE": [
+            {
+              "PERSON": "Alan"
+            }
+          ]
+        },
+        {
+          "id": 37,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "What future boyfriends? No, no, I, I think this could be, you know, it.",
+          "Noun": [
+            "boyfriends"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 38,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Really?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 39,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "Oh, yes. I'd marry him just for his David Hasselhoff impressions alone. You know I'm going to do him at a party, right?",
+          "Noun": [
+            "party"
+          ],
+          "NE": [
+            {
+              "PERSON": "David Hasselhoff"
+            }
+          ]
+        },
+        {
+          "id": 41,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "Do you know what I like most about him though?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 42,
+          "Type": "Character",
+          "Description": "ALL",
+          "Parenthetical": "(walla)",
+          "Dialogue": "What?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 43,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "The way he makes me feel about myself.",
+          "Noun": [
+            "way"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 44,
+          "Type": "Character",
+          "Description": "ALL",
+          "Parenthetical": "(walla)",
+          "Dialogue": "Yeah...",
+          "Noun": "",
+          "NE": ""
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "Set": "INT. CENTRAL PERK  DAY",
+      "INT/EXT": "INT",
+      "Time": "DAY",
+      "Loc": "CENTRAL PERK",
+      "Element": [
+        {
+          "id": 1,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Hi. How was the game?",
+          "Noun": [
+            "game"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 2,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "Uh, well...",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 3,
+          "Type": "Character",
+          "Description": "ALL",
+          "Parenthetical": "(walla)",
+          "Dialogue": "We won!",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 4,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "(laughs)",
+          "Dialogue": "Fantastic!  I have one question. How was that possible?",
+          "Noun": [
+            "question"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 5,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "Alan.",
+          "Noun": "",
+          "NE": [
+            {
+              "PERSON": "Alan"
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "It was unbelievable.  He was like that, that, that Bugs Bunny cartoon where Bugs is playing all of the positions. But instead of Bugs it was first base Alan, second base Alan, third base Alan...",
+          "Noun": [
+            "cartoon",
+            "Bugs",
+            "positions",
+            "Bugs",
+            "base",
+            "base",
+            "base"
+          ],
+          "NE": [
+            {
+              "PERSON": "Bugs Bunny"
+            },
+            {
+              "PERSON": "Alan"
+            },
+            {
+              "PERSON": "Alan"
+            },
+            {
+              "PERSON": "Alan"
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "like, he made us into a team.",
+          "Noun": [
+            "team"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 7,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "like, he made us into a team.",
+          "Noun": [
+            "team"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 8,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "two about softball.",
+          "Noun": [
+            "softball"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 8,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "two about softball.",
+          "Noun": [
+            "softball"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 8,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "two about softball.",
+          "Noun": [
+            "softball"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 9,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "Yes.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 10,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Can I ask you guys a question? Do you ever think that Alan is maybe sometimes...",
+          "Noun": [
+            "guys",
+            "question"
+          ],
+          "NE": [
+            {
+              "PERSON": "Alan"
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "What?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 12,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "I don't know. A little too Alan.",
+          "Noun": "",
+          "NE": [
+            {
+              "PERSON": "Alan"
+            }
+          ]
+        },
+        {
+          "id": 13,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "Oh, no. That's not possible. He can never be too Alan.",
+          "Noun": "",
+          "NE": [
+            {
+              "PERSON": "Alan"
+            }
+          ]
+        },
+        {
+          "id": 14,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "Yeah. It's, it's his innate Alanness that, that, that we, we adore.",
+          "Noun": "",
+          "NE": [
+            {
+              "PERSON": "Alanness"
+            }
+          ]
+        },
+        {
+          "id": 15,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "I personally could have a gallon of Alan!  Oh!  Oh!",
+          "Noun": [
+            "gallon"
+          ],
+          "NE": [
+            {
+              "PERSON": "Alan"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "Set": "EXT. CITY STREETS  DAY",
+      "INT/EXT": "EXT",
+      "Time": "DAY",
+      "Loc": "CITY STREETS",
+      "Element": [
+        {
+          "id": 1,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "Hey, Lizzy!",
+          "Noun": "",
+          "NE": [
+            {
+              "PERSON": "Lizzy"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "Type": "Character",
+          "Description": "LIZZY",
+          "Parenthetical": "",
+          "Dialogue": "Hey, weird girl!",
+          "Noun": [
+            "girl"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 3,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "I brought you alphabet soup.",
+          "Noun": [
+            "alphabet",
+            "soup"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 4,
+          "Type": "Character",
+          "Description": "LIZZY",
+          "Parenthetical": "",
+          "Dialogue": "Did you pick out the vowels?",
+          "Noun": [
+            "vowels"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 5,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "Yes. But I left in the \"y's,\" because, you know, sometimes \"y\" sometimes... Urn, I also have something else for you.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 6,
+          "Type": "Character",
+          "Description": "LIZZY",
+          "Parenthetical": "",
+          "Dialogue": "Saltines?",
+          "Noun": "",
+          "NE": [
+            {
+              "ORG": "Saltines"
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "No. But would you like a thousand dollars and a football phone?",
+          "Noun": [
+            "dollars",
+            "football",
+            "phone"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 8,
+          "Type": "Character",
+          "Description": "LIZZY",
+          "Parenthetical": "",
+          "Dialogue": "What? Oh, my God!  Oh, my God! There's really money in here.",
+          "Noun": [
+            "money"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 9,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "I know.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 10,
+          "Type": "Character",
+          "Description": "LIZZY",
+          "Parenthetical": "",
+          "Dialogue": "Weird girl. What are you doing?",
+          "Noun": [
+            "girl"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 11,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "Oh, I want you to have it. don't want it.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 12,
+          "Type": "Character",
+          "Description": "LIZZY",
+          "Parenthetical": "",
+          "Dialogue": "No, no.  I have, I have to give you something.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 13,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "No, it's fine. You don't...",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 14,
+          "Type": "Character",
+          "Description": "LIZZY",
+          "Parenthetical": "",
+          "Dialogue": "Do you want my tin foil hat?",
+          "Noun": [
+            "tin",
+            "foil",
+            "hat"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 15,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "No, cause you need that. No, it's okay. Thanks.",
+          "Noun": [
+            "Thanks"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 16,
+          "Type": "Character",
+          "Description": "LIZZY",
+          "Parenthetical": "",
+          "Dialogue": "Please. Let me do something.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 17,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "Uh, okay. All right. I'll tell you what. You buy me a soda and then we're even. Okay?",
+          "Noun": [
+            "soda"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 18,
+          "Type": "Character",
+          "Description": "LIZZY",
+          "Parenthetical": "",
+          "Dialogue": "Okay.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 19,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "Okay.",
+          "Noun": "",
+          "NE": ""
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "Set": "INT. CHANDLER'S OFFICE  DAY",
+      "INT/EXT": "INT",
+      "Time": "DAY",
+      "Loc": "CHANDLER'S OFFICE",
+      "Element": [
+        {
+          "id": "id",
+          "Type": "",
+          "Description": "",
+          "Parenthetical": "",
+          "Dialogue": "",
+          "Noun": "",
+          "NE": ""
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "Set": "EXT. CITY STREETS  FOOD STAND  DAY",
+      "INT/EXT": "EXT",
+      "Time": "DAY",
+      "Loc": "CITY STREETS  FOOD STAND",
+      "Element": [
+        {
+          "id": 1,
+          "Type": "Character",
+          "Description": "LIZZY",
+          "Parenthetical": "",
+          "Dialogue": "Keep the change.",
+          "Noun": [
+            "change"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 2,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "Thanks, Lizzy.",
+          "Noun": [
+            "Thanks"
+          ],
+          "NE": [
+            {
+              "PERSON": "Lizzy"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "Type": "Character",
+          "Description": "LIZZY",
+          "Parenthetical": "",
+          "Dialogue": "Sure you don't want a pretzel?",
+          "Noun": [
+            "pretzel"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 4,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "No, I'm fine. Thanks.",
+          "Noun": [
+            "Thanks"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 5,
+          "Type": "Character",
+          "Description": "LIZZY",
+          "Parenthetical": "",
+          "Dialogue": "See you.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 6,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "Huh?",
+          "Noun": "",
+          "NE": ""
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "Set": "INT. CENTRAL PERK  DAY",
+      "INT/EXT": "INT",
+      "Time": "DAY",
+      "Loc": "CENTRAL PERK",
+      "Element": [
+        {
+          "id": 1,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "A thumb?",
+          "Noun": [
+            "thumb"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 2,
+          "Type": "Character",
+          "Description": "ALL",
+          "Parenthetical": "",
+          "Dialogue": "Ooh's...",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 3,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "I know.  I know. I opened it up and there it was, just floating in there, like this tiny little hitchhiker.",
+          "Noun": [
+            "hitchhiker"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 4,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "Well, maybe it's a contest, you know? Like collect all five?",
+          "Noun": [
+            "contest"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 5,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "Does urn anyone want to see?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 6,
+          "Type": "Character",
+          "Description": "ALL",
+          "Parenthetical": "",
+          "Dialogue": "No's.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 7,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "No thanks.",
+          "Noun": [
+            "thanks"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 8,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "Oh, hey...",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 9,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "Don't do that. Come on.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 10,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "It's worse than the thumb.",
+          "Noun": [
+            "thumb"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 11,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "Hey!  I think this is so unfair.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 12,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Why is it unfair?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 13,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "Oh... This isn't...",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 14,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "So I have a flaw! Big deal! Like Joey's (os) constant knuckle cracking isn't annoying? (on camera) And Ross, with his over pronouncing every single word. And Monica with that snort when she laughs.  I mean, what the hell is that thing.",
+          "Noun": [
+            "flaw",
+            "deal",
+            "os",
+            "knuckle",
+            "cracking",
+            "camera",
+            "word",
+            "snort",
+            "hell",
+            "thing"
+          ],
+          "NE": [
+            {
+              "PERSON": "Joey"
+            },
+            {
+              "PERSON": "Ross"
+            },
+            {
+              "PERSON": "Monica"
+            }
+          ]
+        },
+        {
+          "id": 16,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "I accept all of those flaws. Why can't you accept me for this?",
+          "Noun": [
+            "flaws"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 17,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "Does the knuckle cracking bother everybody?",
+          "Noun": [
+            "knuckle"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 18,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "Well, I, I could live without it.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 19,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "Well, is it like a little annoying or is it like when Phoebe chews her hair?",
+          "Noun": [
+            "hair"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 20,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "Oh, now don't listen to him, Phoebs, all right? I think it's endearing.",
+          "Noun": "",
+          "NE": [
+            {
+              "PERSON": "Phoebs"
+            }
+          ]
+        },
+        {
+          "id": 21,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "Oh, you do, do you?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 23,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "You know, there's nothing wrong with speaking correctly.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 24,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "Indeed there isn't.  I should really get back to work.",
+          "Noun": [
+            "work"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 25,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "Yeah, otherwise someone might get what they actually ordered.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 27,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "(fake laugh)",
+          "Dialogue": "Oh, the hair comes out and the gloves come off.",
+          "Noun": [
+            "hair",
+            "gloves"
+          ],
+          "NE": ""
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "Set": "INT. IRIDIUM  NIGHT",
+      "INT/EXT": "INT",
+      "Time": "NIGHT",
+      "Loc": "IRIDIUM",
+      "Element": [
+        {
+          "id": 1,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Did you ever go out with a guy your friends all really like?",
+          "Noun": [
+            "guy",
+            "friends"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 2,
+          "Type": "Character",
+          "Description": "PAULA",
+          "Parenthetical": "",
+          "Dialogue": "No.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 3,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Okay. Well, I'm going out with a guy my friends all really like.",
+          "Noun": [
+            "guy",
+            "friends"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 4,
+          "Type": "Character",
+          "Description": "PAULA",
+          "Parenthetical": "",
+          "Dialogue": "Well, well are we taking about the coyotes here? (laughs)",
+          "Noun": [
+            "coyotes"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 5,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Urn hm.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 6,
+          "Type": "Character",
+          "Description": "PAULA",
+          "Parenthetical": "(laughs)",
+          "Dialogue": "All right. A cow got through.",
+          "Noun": [
+            "cow"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 7,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Can you believe it? It's just, you know what? I just don't feel the thing. I mean, they feel the thing. I don't feel the thing.",
+          "Noun": [
+            "thing",
+            "thing",
+            "thing"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 8,
+          "Type": "Character",
+          "Description": "PAULA",
+          "Parenthetical": "",
+          "Dialogue": "Honey, you should always feel the thing. (laughs) Listen, if that's how you feel about the guy, Monica, dump him.",
+          "Noun": [
+            "Honey",
+            "thing",
+            "guy"
+          ],
+          "NE": [
+            {
+              "PERSON": "Monica"
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "I know. It's just going to be really hard.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 10,
+          "Type": "Character",
+          "Description": "PAULA",
+          "Parenthetical": "",
+          "Dialogue": "Yeah, he's a big boy. He'll get over it.",
+          "Noun": [
+            "boy"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 11,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "No, he'll be fine. It's the other five I'm worried about.",
+          "Noun": "",
+          "NE": ""
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "Set": "INT. CENTRAL PERK",
+      "INT/EXT": "INT",
+      "Time": "PERK",
+      "Loc": "",
+      "Element": [
+        {
+          "id": 1,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "Don't you have any respect for your body?",
+          "Noun": [
+            "respect",
+            "body"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 2,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "Don't you realize what you, you're doing to yourself?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 3,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "Hey, you know, I've had it with you guys and your cancer and your emphysema and your heart disease.  The bottom line is \"smoking is cool\" and you know it.",
+          "Noun": [
+            "guys",
+            "cancer",
+            "emphysema",
+            "heart",
+            "disease",
+            "line",
+            "smoking"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 4,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "Chandler, it's Alan and he wants to speak to you.",
+          "Noun": "",
+          "NE": [
+            {
+              "PERSON": "Chandler"
+            },
+            {
+              "PERSON": "Alan"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "Really? He, he does? (on phone) Hey, buddy! What's up? Oh, she told you about that, huh? Well, yeah.  I have one now and then. Well, yeah, now. Well, it's not that bad... Well, that's true.  Oh, gee, no one's, no one's ever put it like that before.  (laugh) Well, okay. Thanks.",
+          "Noun": [
+            "phone",
+            "buddy",
+            "one",
+            "one",
+            "Thanks"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 6,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "God, he's good.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 7,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "If only he were a woman.",
+          "Noun": [
+            "woman"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 8,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "(laugh)",
+          "Dialogue": "Yeah.",
+          "Noun": "",
+          "NE": ""
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "Set": "INT. MONICA'S APARTMENT",
+      "INT/EXT": "INT",
+      "Time": "APARTMENT",
+      "Loc": "MONICA",
+      "Element": [
+        {
+          "id": 1,
+          "Type": "Character",
+          "Description": "CHANDLER (OS)",
+          "Parenthetical": "",
+          "Dialogue": "Oh, Lamb chop! (on camera) How old is that sock? If I had a sock on my hand for",
+          "Noun": [
+            "chop",
+            "camera",
+            "sock",
+            "sock",
+            "hand"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 2,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "(CONTINUED)",
+          "Dialogue": "thirty years, I'd be talking, too.",
+          "Noun": [
+            "years"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 3,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "kay. I think it's time to change somebody's nicotine patch.",
+          "Noun": [
+            "time",
+            "nicotine",
+            "patch"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 4,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Hey! Where's Joey?",
+          "Noun": "",
+          "NE": [
+            {
+              "PERSON": "Joey"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "Joey ate my last stick of gum, so I killed him! Do you think that was wrong?",
+          "Noun": [
+            "stick",
+            "gum"
+          ],
+          "NE": [
+            {
+              "PERSON": "Joey"
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "I think he's across the hall.",
+          "Noun": [
+            "hall"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 7,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Thanks.",
+          "Noun": [
+            "Thanks"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 8,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "There you go.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 9,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "Ooh... I'm alive with pleasure now.",
+          "Noun": [
+            "pleasure"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 10,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "Hey, Phoebs, are you going to have the rest of that Pop art? Phoebs?",
+          "Noun": [
+            "rest",
+            "Pop",
+            "art"
+          ],
+          "NE": [
+            {
+              "PERSON": "Phoebs"
+            },
+            {
+              "PERSON": "Phoebs"
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "Does anyone want the rest of this Pop Tart?",
+          "Noun": [
+            "rest"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 12,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "Hey, I might.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 13,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "I'm sorry. (sighs) You know, those stupid soda people gave me seven thousand dollars for the thumb.",
+          "Noun": [
+            "soda",
+            "people",
+            "dollars",
+            "thumb"
+          ],
+          "NE": [
+            {
+              "MONEY": "seven thousand dollars"
+            }
+          ]
+        },
+        {
+          "id": 14,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "kay, my God!",
+          "Noun": [
+            "kay"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 15,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "Seven thousand dollars?",
+          "Noun": [
+            "dollars"
+          ],
+          "NE": [
+            {
+              "MONEY": "Seven thousand dollars"
+            }
+          ]
+        },
+        {
+          "id": 16,
+          "Type": "Character",
+          "Description": "CHANDLER (OS)",
+          "Parenthetical": "",
+          "Dialogue": "Are you kidding?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 17,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "And on my way over here I stepped in gum. What is up with the universe?",
+          "Noun": [
+            "way",
+            "gum",
+            "universe"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 18,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "What's going on?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 19,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Nothing.  I just think it's nice (os) when we're all here together.",
+          "Noun": [
+            "os"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 20,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "It'd be nicer if everyone gets to wear their underwear.",
+          "Noun": [
+            "underwear"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 21,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "Uh, Joey...",
+          "Noun": "",
+          "NE": [
+            {
+              "PERSON": "Joey"
+            }
+          ]
+        },
+        {
+          "id": 22,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "Oh, guy...",
+          "Noun": [
+            "guy"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 23,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Oh, okay.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 25,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Oh, please, guys we have to talk.",
+          "Noun": [
+            "guys"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 26,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "Wait, wait! I'm getting a deja vu. No, I'm not.",
+          "Noun": [
+            "deja",
+            "vu"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 27,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "All right. We have to talk.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 28,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "There it is.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 29,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Okay. It, it's about Alan. There's something that you should know.  I mean, there's really no easy way to say this. Urn, I've decided to break up with Alan.",
+          "Noun": [
+            "way"
+          ],
+          "NE": [
+            {
+              "PERSON": "Alan"
+            },
+            {
+              "PERSON": "Alan"
+            }
+          ]
+        },
+        {
+          "id": 31,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "Is there somebody else?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 32,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "No, no, no, no. It's just, you know, things change, people change.",
+          "Noun": [
+            "things",
+            "people"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 33,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "We didn't change.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 34,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "So that's it? It's over? Just like that?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 35,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "You know, you let your guard down, you know? You start to really care about someone, and I just, I...",
+          "Noun": [
+            "guard"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 36,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Look, I can go on pretending...",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 37,
+          "Type": "Character",
+          "Description": "JOEY",
+          "Parenthetical": "",
+          "Dialogue": "Okay.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 38,
+          "Type": "Character",
+          "Description": "MONICA (OS)",
+          "Parenthetical": "",
+          "Dialogue": "No. (on camera) That wouldn't be fair to me. It wouldn't be fair to Alan. It wouldn't be fair to you.",
+          "Noun": [
+            "camera"
+          ],
+          "NE": [
+            {
+              "PERSON": "Alan"
+            }
+          ]
+        },
+        {
+          "id": 39,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "Yeah? Well, who wants fair? mean, I, I just want things back! You know? The way they were.",
+          "Noun": [
+            "things",
+            "way"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 40,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "I'm sorry.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 41,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "Oh, she's sorry. I feel better.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 42,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "I just can't believe this! mean, with the holidays coming up! I wanted him to meet my family. (cries)",
+          "Noun": [
+            "holidays",
+            "family",
+            "cries"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 43,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "I'll meet someone else. There'll be other Alan's.",
+          "Noun": "",
+          "NE": [
+            {
+              "PERSON": "Alan"
+            }
+          ]
+        },
+        {
+          "id": 45,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "Oh, yeah! Right!",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 46,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Are you guys going to be okay?",
+          "Noun": [
+            "guys"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 47,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "Hey, hey! We'll be fine. We're just going to need a little time.",
+          "Noun": [
+            "time"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 48,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "I understand.",
+          "Noun": "",
+          "NE": ""
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "Set": "INT. CENTRAL PERK",
+      "INT/EXT": "INT",
+      "Time": "PERK",
+      "Loc": "",
+      "Element": [
+        {
+          "id": 1,
+          "Type": "Character",
+          "Description": "ALAN",
+          "Parenthetical": "(sighs)",
+          "Dialogue": "Wow!",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 2,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "I, I'm really sorry.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 3,
+          "Type": "Character",
+          "Description": "ALAN",
+          "Parenthetical": "",
+          "Dialogue": "Yeah, I, I'm sorry, too. But I got to tell you, I am a little relieved.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 4,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Relieved?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 5,
+          "Type": "Character",
+          "Description": "ALAN",
+          "Parenthetical": "",
+          "Dialogue": "Yeah, well, I mean, I had a great time with you.  I just can't stand your friends.",
+          "Noun": [
+            "time",
+            "friends"
+          ],
+          "NE": ""
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "Set": "INT. MONICA'S APARTMENT",
+      "INT/EXT": "INT",
+      "Time": "APARTMENT",
+      "Loc": "MONICA",
+      "Element": [
+        {
+          "id": 1,
+          "Type": "Character",
+          "Description": "RACHEL",
+          "Parenthetical": "",
+          "Dialogue": "Remember when we went to Central Park and rented boats? That was fun.",
+          "Noun": [
+            "boats"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 2,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "Yeah. He could row like a Viking.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 3,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Hi.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 4,
+          "Type": "Character",
+          "Description": "ALL",
+          "Parenthetical": "",
+          "Dialogue": "Hi!",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 5,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "So, how did it go?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 6,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Oh... You know.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 7,
+          "Type": "Character",
+          "Description": "PHOEBE",
+          "Parenthetical": "",
+          "Dialogue": "Did, did he mention us?",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 8,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "He says he's really going to miss you guys.",
+          "Noun": [
+            "guys"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 10,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "You had a rough day, huh?",
+          "Noun": [
+            "day"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 11,
+          "Type": "Character",
+          "Description": "MONICA",
+          "Parenthetical": "",
+          "Dialogue": "Oh, you have no idea.",
+          "Noun": [
+            "idea"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 12,
+          "Type": "Character",
+          "Description": "ROSS",
+          "Parenthetical": "",
+          "Dialogue": "Come here.",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 14,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "That's it! I'm getting cigarettes!",
+          "Noun": [
+            "cigarettes"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 16,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "I don't care! I don't care! Game's over. I'm weak!  I've got to smoke! I've got to have the smoke!",
+          "Noun": [
+            "Game",
+            "smoke"
+          ],
+          "NE": ""
+        },
+        {
+          "id": 17,
+          "Type": "Character",
+          "Description": "PHOEBE (OS)",
+          "Parenthetical": "",
+          "Dialogue": "If you never smoke again, (on camera) I'll give you seven thousand dollars!",
+          "Noun": [
+            "camera",
+            "dollars"
+          ],
+          "NE": [
+            {
+              "MONEY": "seven thousand dollars"
+            }
+          ]
+        },
+        {
+          "id": 18,
+          "Type": "Character",
+          "Description": "CHANDLER",
+          "Parenthetical": "",
+          "Dialogue": "Yeah, all right!",
+          "Noun": "",
+          "NE": ""
+        },
+        {
+          "id": 19,
+          "Type": "Action",
+          "Description": "THE END",
+          "Parenthetical": "",
+          "Dialogue": "",
+          "Noun": [
+            "END"
+          ],
+          "NE": ""
+        }
+      ]
+    }
+  ]
+}

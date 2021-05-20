@@ -11,7 +11,7 @@ using VIToACS.Parsers;
 
 namespace VIToACS.Services
 {
-    public class FileStreamInsightsReaderService : IInsightsReader
+    public class FileStreamInsightsReaderService<T, T_Parser> : IInsightsReader<T> where T_Parser:ISceneParser<T>, new()
     {
         private readonly ReaderConfig _config;
         private readonly ILog _logger;
@@ -34,7 +34,7 @@ namespace VIToACS.Services
             Common.WriteFile(_config.FileStream.InsightsPath, content, fileName);
         }
 
-        public IEnumerable<ParsedDocument> ReadInsightsFiles()
+        public IEnumerable<ParsedDocument<T>> ReadInsightsFiles()
         {
             foreach (string file in Directory.EnumerateFiles(_config.FileStream.InsightsPath, "*.json"))
             {
@@ -50,7 +50,7 @@ namespace VIToACS.Services
 
                 _logger.Debug($"Reading the file { file }.");
 
-                IEnumerable<Scene> scenes = GetScenes(file);
+                IEnumerable<T> scenes = GetScenes(file);
                 if (scenes == null)
                 {
                     _logger.Warn($"It was not possible to extract the scenes from the file { file }.");
@@ -74,7 +74,7 @@ namespace VIToACS.Services
                     _logger.Debug($"The file { file } has { thumbnails.Count() } thumbnails.");
                 }
 
-                yield return new ParsedDocument
+                yield return new ParsedDocument<T>
                 {
                     FileName = file,
                     ParsedScenesJson = scenesJson,
@@ -85,16 +85,18 @@ namespace VIToACS.Services
             }
         }
 
-        private IEnumerable<Scene> GetScenes(string fileName)
+        private IEnumerable<T> GetScenes(string fileName)
         {
             _logger.Info($"Parsing scenes from the file { fileName }.");
-            IEnumerable<Scene> scenes = null;
+            IEnumerable<T> scenes = null;
             try
             {
                 using (StreamReader sr = new StreamReader(fileName))
                 {
                     var doc = JsonDocument.Parse(sr.ReadToEnd());
-                    scenes = ScenesParser.GetScenes(doc);
+                    var parser = new T_Parser();
+
+                    scenes = parser.GetScenes(doc);
                 }
             }
             catch (FileNotFoundException)
@@ -124,6 +126,7 @@ namespace VIToACS.Services
                 using (StreamReader sr = new StreamReader(fileName))
                 {
                     var doc = JsonDocument.Parse(sr.ReadToEnd());
+                    
                     thumbnails = ThumbnailsParser.GetThumbnails(doc);
                 }
             }
@@ -140,7 +143,7 @@ namespace VIToACS.Services
             catch (Exception ex)
             {
                 _logger.Error(ex.Message);
-                return null;
+                return new Thumbnail[0];
             }
             return thumbnails;
         }

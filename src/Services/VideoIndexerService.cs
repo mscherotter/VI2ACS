@@ -15,7 +15,7 @@ using VIToACS.Models;
 
 namespace VIToACS.Services
 {
-    public class VideoIndexerService : IVideoIndexer
+    public class VideoIndexerService<T> : IVideoIndexer<T>
     {
         private readonly VideoIndexerConfig _config;
         private readonly ReaderConfig _readerConfig;
@@ -44,7 +44,7 @@ namespace VIToACS.Services
             }
         }
 
-        public async Task AddNewInsightsFileToReaderAsync(IInsightsReader reader, MediaAsset media)
+        public async Task AddNewInsightsFileToReaderAsync(IInsightsReader<T> reader, MediaAsset media)
         {
             var accessToken = await GetAccountAccessTokenAsync();
 

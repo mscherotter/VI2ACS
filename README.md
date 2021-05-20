@@ -15,16 +15,26 @@ The **thumbnailindex** allows the creation ofqueries for keyframe thumbnails tha
 Various fields are facetable, filterable, and searchable.  Look at the model classes for the IsFilterable, IsSearchable, and IsFacetable attributes on properties. 
 
 #### Scene Index
-- Search for scenes that have a specific person: ```$count=true&$filter=Faces/any(face: face/Name eq 'John Doe')&$select=Start,End```
-- Search for scenes that have a refrigerator in them: ```$count=true&$filter=Labels/any(label: label/Name eq 'refrigerator')&$select=Start,End```
+- Search for scenes that have a specific person: 
+  
+   ```$count=true&$filter=Faces/any(face: face/Name eq 'John Doe')&$select=Start,End```
+- Search for scenes that have a refrigerator in them:
+  ```$count=true&$filter=Labels/any(label: label/Name eq 'refrigerator')&$select=Start,End```
 - Find me the joyful scenes with John Doe about a restuarant: ```$filter=Faces/any(f: f/Name eq 'John Doe') and Emotions/any(e: e/Type eq 'Joy')&$count=true&search='restaurant'```
-- Find me any scenes that have a visual content moderation score greater than 0.5 and what faces do we have in them?: ```$filter=VisualContentModerations/any(v: v/RacyScore gt 0.5)&facet=Faces/Name```
-- What other peopel are in scenes with John Doe that have extreme close-up shots? ```facet= Faces/Name&$filter=Shots/any(s: s/Tags/any(t: t eq 'ExtremeCloseUp')) and Faces/any(f: f/Name eq 'John Doe')```
+- Find me any scenes that have a visual content moderation score greater than 0.5 and what faces do we have in them?:    
+```$filter=VisualContentModerations/any(v: v/RacyScore gt 0.5)&facet=Faces/Name```
+- What other peopel are in scenes with John Doe that have extreme close-up shots? 
+```facet= Faces/Name&$filter=Shots/any(s: s/Tags/any(t: t eq 'ExtremeCloseUp')) and Faces/any(f: f/Name eq 'John Doe')```
 
 #### Thumbnail Index
 - Search for any thumbnail that has John Doe in it and show me the emotional facets: ```$filter=Faces/any(f: f eq 'John Doe')&facet=Emotions/Type```
 - Search for any thumbnail with Jon Doe in it indoors in a video about health and wellbeing: ```facet=Faces/Name&facet=Keywords/Text&facet=Labels&facet=Sentiments/SentimentType&$filter=Faces/any(f: f/Name eq 'John Doe') and Labels/any(l: l eq 'indoor') and Topics/any(t: t/Name eq 'Health and Wellbeing')&$count=true```
 - Search for a thumbnail with an explosion (using a custom vision model): ```count=true&$filter=CustomVisionModels/any(m: m/id eq 'specialeffects')/Predictions/any(p: p/TagName eq 'explosion' and p/Probability gt 0.8)```
+
+### Script Parser
+An experimental CSE addition to create a scene index from parsing a script and merging with video indexer data.
+- See code in Parsers/ScriptParser.cs
+- Queries like this return the scenes that contain the noun rabbits: ```"$count=true&$filter=Elements/any(element: element/Nouns/any(noun: search.in(noun, 'rabbits')))&$select=Elements/Dialogue,Id,Elements/Nouns,Elements/Description"```
 
 ## The code
 The main entry point for the application is ```Program.cs```. It will read the configuration section of ```appsettings.json``` and create an instance of each service according to the type: **FileStream** or **AzureBlob**. The ```AppHost.cs``` has the main logic inside the method ```Run()```.
@@ -116,7 +126,23 @@ public class Thumbnail
 ```
 
 ## Configuring appsettings.json
+Start with this appsettings.json in the application directory:
 
+```json
+{
+{
+  "azureSearch": {
+  },
+  "videoIndexer": {
+  },
+  "reader": {
+    }
+  },
+  "writer": {
+    }
+  }
+}
+```
 ### reader
 
 Set up the credentials to read from Azure Blob Storage or local storage using FileStream. 
@@ -138,7 +164,7 @@ If using **FileStream**, add a local folder path.
 "failedInsightsPath": "{local file path}"
 ```
 
-### write
+### writer
 
 Set up the credentials to read from Azure Blob Storage or local storage using FileStream. 
 If using blob storage, add the [connection string](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-keys-manage?toc=%2Fazure%2Fstorage%2Fblobs%2Ftoc.json&tabs=azure-portal). 
@@ -167,8 +193,9 @@ Set up the credentials to connect to the [Azure Cognitive Search](https://azure.
 "adminKey": "{admin key}",
 "deleteIndexIfExists": false,
 ```
-
-> Optionally ```deleteIndexIfExists```can be ```true``` if the index will be re-create each time the code runs.
+#### Optional
+```deleteIndexIfExists```can be ```true``` if the index will be re-create each time the code runs.
+"Type": "ScriptParser" - if using experimental script parser output.
 
 ### videoIndexer
 

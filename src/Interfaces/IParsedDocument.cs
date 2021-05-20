@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
-using VIToACS.Interfaces;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace VIToACS.Models
+namespace VIToACS.Interfaces
 {
-    public class ParsedDocument<T>: IParsedDocument<T>
+    public interface IParsedDocument<T>
     {
         public string FileName { get; set; }
         public string ParsedScenesJson { get; set; }
         public string ParsedThumbnailsJson { get; set; }
         public IEnumerable<T> Scenes { get; set; }
-        public IEnumerable<Thumbnail> Thumbnails { get; set; }
+        public IEnumerable<Models.Thumbnail> Thumbnails { get; set; }
     }
 }

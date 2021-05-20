@@ -6,10 +6,10 @@ using VIToACS.Services;
 
 namespace VIToACS.Factories
 {
-    public static class InsightsReaderFactory
+    public static class InsightsReaderFactory<T, T_Parser> where T_Parser : ISceneParser<T>, new()
     {
 
-        public static IInsightsReader CreateInstance(ReaderConfig readerConfig, WriterConfig writerConfig, ILog logger)
+        public static IInsightsReader<T> CreateInstance(ReaderConfig readerConfig, WriterConfig writerConfig, ILog logger)
         {
             if (readerConfig == null)
             {
@@ -24,10 +24,10 @@ namespace VIToACS.Factories
             {
                 // If it is a AzureBlob type, it will add the Uri of the image as a property
                 var thumbnailImageLocation = writerConfig.AzureBlob.ThumbnailsContainer;
-                return new AzureBlobInsightsReaderService(readerConfig, logger, thumbnailImageLocation);
+                return new AzureBlobInsightsReaderService<T, T_Parser>(readerConfig, logger, thumbnailImageLocation);
             }
 
-            return new FileStreamInsightsReaderService(readerConfig, logger);
+            return new FileStreamInsightsReaderService<T, T_Parser>(readerConfig, logger);
         }
 
     }

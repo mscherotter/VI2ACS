@@ -6,16 +6,16 @@ using VIToACS.Services;
 
 namespace VIToACS.Factories
 {
-    public class VideoIndexerFactory
+    public class VideoIndexerFactory<T>
     {
-        public static IVideoIndexer CreateInstance(VideoIndexerConfig config, ReaderConfig readerConfig, ILog logger)
+        public static IVideoIndexer<T> CreateInstance(VideoIndexerConfig config, ReaderConfig readerConfig, ILog logger)
         {
             if (config == null)
             {
-                throw new NullReferenceException();
+                return null;
             }
 
-            return new VideoIndexerService(config, readerConfig, logger);
+            return new VideoIndexerService<T>(config, readerConfig, logger);
         }
     }
 }

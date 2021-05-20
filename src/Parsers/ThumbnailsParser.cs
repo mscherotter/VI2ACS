@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Text.Json;
@@ -33,7 +32,7 @@ namespace VIToACS.Parsers
                     foreach (var keyFrame in shot.GetProperty("keyFrames").EnumerateArray())
                     {
                         var keyFrameId = keyFrame.GetProperty("id").GetInt32();
-                        
+
                         System.Diagnostics.Debug.WriteLine($"Keyframe {keyFrameId}");
 
                         var instance = keyFrame.GetProperty("instances").EnumerateArray().First();
@@ -115,8 +114,8 @@ namespace VIToACS.Parsers
                             };
                         });
 
-                        string storageAccountName = "";
-                        string container = "";
+                        //string storageAccountName = "";
+                        //string container = "";
                         var thumbnailId = instance.GetProperty("thumbnailId").GetString();
 
                         thumbnails.Add(new Thumbnail
@@ -138,7 +137,7 @@ namespace VIToACS.Parsers
                         });
                     }
                 }
-                
+
             }
 
             return thumbnails;

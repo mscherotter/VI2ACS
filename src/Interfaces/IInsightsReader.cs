@@ -3,9 +3,9 @@ using VIToACS.Models;
 
 namespace VIToACS.Interfaces
 {
-    public interface IInsightsReader
+    public interface IInsightsReader<T>
     {
-        IEnumerable<ParsedDocument> ReadInsightsFiles();
+        IEnumerable<ParsedDocument<T>> ReadInsightsFiles();
         void AddNewFile(string fileName, string content);
     }
 }

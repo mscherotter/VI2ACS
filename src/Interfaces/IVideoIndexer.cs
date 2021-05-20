@@ -6,9 +6,9 @@ using VIToACS.Models;
 
 namespace VIToACS.Interfaces
 {
-    public interface IVideoIndexer
+    public interface IVideoIndexer<T>
     {
-        Task AddNewInsightsFileToReaderAsync(IInsightsReader reader, MediaAsset media);
+        Task AddNewInsightsFileToReaderAsync(IInsightsReader<T> reader, MediaAsset media);
         bool IsDownloadInsightsEnabled();
         bool IsDownloadThumbnailsEnabled();
         Task<MediaAssetResults> ListVideosAsync(int skip);
